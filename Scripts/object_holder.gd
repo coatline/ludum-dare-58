@@ -23,9 +23,9 @@ func try_drop():
 		holdable_object.drop(-global_transform.basis.z)
 		#SoundManager.play_sound("DropObject", hand.global_transform.origin)
 
-func try_use(started: bool = false, finished: bool = false) -> void:
+func try_use(delta: float, started: bool = false, finished: bool = false) -> void:
 	if holdable_object:
-		holdable_object.use(-global_transform.basis.z, started, finished)
+		holdable_object.use(-global_transform.basis.z, delta, started, finished)
 
 func _process(_delta):
 	if holdable_object:

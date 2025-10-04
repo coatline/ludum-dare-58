@@ -1,8 +1,8 @@
 extends RayCast3D
 
-@export var interact_label: Label
 @export var interact_distance: float = 3.0
 @export var object_holder : ObjectHolder
+@export var keybinds_label: KeybindsLabel
 
 var hovered_object: Interactable = null
 
@@ -19,7 +19,7 @@ func _physics_process(delta):
 				hovered_object = collider
 				hovered_object.emit_signal("hovered", true)
 			
-			interact_label.text = collider.display_name + " - E"
+			keybinds_label.toggle_keybind("interact", true)
 			if Input.is_action_just_pressed("interact"):
 				collider.interact(self)
 		else:
@@ -31,4 +31,5 @@ func _clear_hover():
 	if hovered_object:
 		hovered_object.emit_signal("hovered", false)
 		hovered_object = null
-	interact_label.text = ""
+	
+	keybinds_label.toggle_keybind("interact", false)

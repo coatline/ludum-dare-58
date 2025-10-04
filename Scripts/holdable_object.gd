@@ -51,7 +51,7 @@ func can_interact(interactor) -> bool:
 func interact_text() -> String:
 	return "Pickup " + name
 
-func use(direction: Vector3, started: bool = false, finished: bool = false) -> void:
+func use(direction: Vector3, delta: float, started: bool = false, finished: bool = false) -> void:
 	pass
 
 func rotate_vertically() -> bool:

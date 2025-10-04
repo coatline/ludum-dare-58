@@ -1,14 +1,14 @@
 extends Label
 class_name KeybindsLabel
 
-var keys_dict = {"drop_item": false, "use_item": false}
-var keys_order = ["drop_item", "use_item"]
+var keys_dict = {"drop_item": false, "use_item": false, "interact" : false}
+var keys_order = ["interact", "drop_item", "use_item"]
 
 var control_scheme = "keyboard"
 
 var display_names = {
-	"keyboard": {"drop_item": "Drop - Q", "use_item": "Use - LMB"},
-	"gamepad": {"drop_item": "Drop - X", "use_item": "Use - RT"}
+	"keyboard": {"drop_item": "Drop - Q", "use_item": "Use - LMB", "interact": "Interact - E"},
+	"gamepad": {"drop_item": "Drop - X", "use_item": "Use - RT", "interact": "Interact - A"}
 }
 
 func _init() -> void:
