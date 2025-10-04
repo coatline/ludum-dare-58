@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://db4sxar4lhac1"]
+
+[ext_resource type="PackedScene" uid="uid://rwtxgxevspvg" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://77uw5vitr3ja" path="res://Scripts/holdable_object.gd" id="2_qxrlw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ebmjs"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ebmjs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebmjs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ebmjs"]
+
+[sub_resource type="Sky" id="Sky_qxrlw"]
+sky_material = SubResource("ProceduralSkyMaterial_ebmjs")
+
+[sub_resource type="Environment" id="Environment_ebmjs"]
+background_mode = 2
+sky = SubResource("Sky_qxrlw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxrlw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wrm1d"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_ebmjs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0.25, 0)
+mesh = SubResource("PlaneMesh_ebmjs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ebmjs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0613203, 0.9245906, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ebmjs")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8667564, 1.3867435, -0.5337434)
+script = ExtResource("2_qxrlw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_qxrlw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_wrm1d")
+skeleton = NodePath("../..")

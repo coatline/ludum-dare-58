@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://rwtxgxevspvg"]
+
+[ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/player_interact.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://chg8iermxxu7c" path="res://Scripts/object_holder.gd" id="3_6t5aa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2poj3"]
+
+[node name="Player" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_v0iea")
+sensitivity = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ebmjs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_2poj3")
+skeleton = NodePath("../..")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" node_paths=PackedStringArray("interact_label", "object_holder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34058595)
+target_position = Vector3(0, 0, -2)
+script = ExtResource("2_cvnsp")
+interact_label = NodePath("../../../Control/Label")
+object_holder = NodePath("../../../Hand")
+
+[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("hand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26523185, 1.0320841, -1.2243512)
+script = ExtResource("3_6t5aa")
+hand = NodePath(".")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "'E'"
+horizontal_alignment = 1
+vertical_alignment = 2
