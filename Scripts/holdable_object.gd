@@ -46,7 +46,7 @@ func interact(interactor):
 	current_holder = interactor.object_holder
 
 func can_interact(interactor) -> bool:
-	return not interactor.object_holder.has_item() if interactor.has_method("object_holder") else false
+	return not interactor.object_holder.has_item()
 
 func interact_text() -> String:
 	return "Pickup " + name

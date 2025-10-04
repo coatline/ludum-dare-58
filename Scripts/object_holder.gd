@@ -9,13 +9,13 @@ func pickup(obj):
 	holdable_object = obj
 	holdable_object.pickup()
 	
-	holdable_object.left_hand.connect(object_left)
-	holdable_object.destroyed.connect(object_left)
+	holdable_object.left_hand.connect(object_gone)
+	holdable_object.destroyed.connect(object_gone)
 
-func object_left():
+func object_gone():
 	if holdable_object:
-		holdable_object.left_hand.disconnect(object_left)
-		holdable_object.destroyed.disconnect(object_left)
+		holdable_object.left_hand.disconnect(object_gone)
+		holdable_object.destroyed.disconnect(object_gone)
 		holdable_object = null
 
 func try_drop():
@@ -35,5 +35,4 @@ func _process(_delta):
 		var rot = Vector3(rot_x, hand.global_rotation_degrees.y, hand.global_rotation_degrees.z)
 		holdable_object.hold(hand.global_transform.origin, rot)
 
-func has_item() -> bool:
-	return holdable_object != null
+func has_item() -> bool: return holdable_object != null

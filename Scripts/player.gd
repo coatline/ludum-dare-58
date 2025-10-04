@@ -25,6 +25,7 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		look_rot = Vector2.ZERO
 		return
 	
 	var move_speed = speed
