@@ -15,18 +15,26 @@ extends CharacterBody3D
 @onready var collision_shape = $CollisionShape3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var look_rot : Vector2
-var stand_height : float
+var focused: bool = true
+var stand_height: float
+var look_rot: Vector2
 
 func _ready():
 	stand_height = collision_shape.shape.height
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		return
+	
 	var move_speed = speed
 	
 	if Input.is_action_just_pressed("drop"):
 		object_holder.try_drop()
+	if Input.is_action_pressed("use_item"):
+		object_holder.try_use(Input.is_action_just_pressed("use_item"), false)
+	if Input.is_action_just_released("use_item"):
+		object_holder.try_use(false, true)
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -60,6 +68,13 @@ func _input(event):
 		look_rot.y -= (event.relative.x * sensitivity)
 		look_rot.x -= (event.relative.y * sensitivity)
 		look_rot.x = clamp(look_rot.x, min_angle, max_angle)
+	
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func crouch(delta : float, reverse = false):
 	var target_height : float = crouch_height if not reverse else stand_height
@@ -67,3 +82,9 @@ func crouch(delta : float, reverse = false):
 	collision_shape.shape.height = lerp(collision_shape.shape.height, target_height, crouch_transition * delta)
 	collision_shape.position.y = lerp(collision_shape.position.y, target_height * 0.5, crouch_transition * delta)
 	head.position.y = lerp(head.position.y, target_height - 1, crouch_transition * delta)
+
+enum {
+	ONGOING,
+	STARTED,
+	FINISHED
+}

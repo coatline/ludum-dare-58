@@ -14,8 +14,8 @@ func pickup(obj):
 
 func object_left():
 	if holdable_object:
-		holdable_object.left_hand.connect(object_left)
-		holdable_object.destroyed.connect(object_left)
+		holdable_object.left_hand.disconnect(object_left)
+		holdable_object.destroyed.disconnect(object_left)
 		holdable_object = null
 
 func try_drop():
@@ -23,17 +23,9 @@ func try_drop():
 		holdable_object.drop(-global_transform.basis.z)
 		#SoundManager.play_sound("DropObject", hand.global_transform.origin)
 
-func start_using():
+func try_use(started: bool = false, finished: bool = false) -> void:
 	if holdable_object:
-		holdable_object.start_using(global_transform.basis.z * -1)
-
-func continue_using():
-	if holdable_object:
-		holdable_object.continue_using(global_transform.basis.z * -1)
-
-func finish_using():
-	if holdable_object:
-		holdable_object.finish_using(global_transform.basis.z * -1)
+		holdable_object.use(-global_transform.basis.z, started, finished)
 
 func _process(_delta):
 	if holdable_object:

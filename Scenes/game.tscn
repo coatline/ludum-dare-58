@@ -39,7 +39,7 @@ material = SubResource("StandardMaterial3D_qxrlw")
 size = Vector3(0.3, 0.5, 0.15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3dryh"]
-size = Vector3(0.3, 0.5, 0.025)
+size = Vector3(0.3, 0.5, 0.075)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wowpa"]
 size = Vector3(0.3, 0.5, 0.025)
@@ -79,9 +79,11 @@ shape = SubResource("BoxShape3D_qxrlw")
 mesh = SubResource("BoxMesh_wrm1d")
 skeleton = NodePath("../..")
 
-[node name="CardPack" type="RigidBody3D" parent="."]
+[node name="CardPack" type="RigidBody3D" parent="." node_paths=PackedStringArray("rb", "collider")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026085377, 1.3867435, -2.4191875)
 script = ExtResource("3_wrm1d")
+rb = NodePath(".")
+collider = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CardPack"]
 shape = SubResource("BoxShape3D_wrm1d")
@@ -90,9 +92,11 @@ shape = SubResource("BoxShape3D_wrm1d")
 mesh = SubResource("BoxMesh_3dryh")
 skeleton = NodePath("../..")
 
-[node name="Card" type="RigidBody3D" parent="."]
+[node name="Card" type="RigidBody3D" parent="." node_paths=PackedStringArray("rb", "collider")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15572906, 0.6983392, -2.1169214)
 script = ExtResource("4_3dryh")
+rb = NodePath(".")
+collider = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Card"]
 shape = SubResource("BoxShape3D_3dryh")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=8 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/player_interact.gd" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/player_object_holder.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/keybinds_label.gd" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 
@@ -36,10 +38,10 @@ script = ExtResource("2_cvnsp")
 interact_label = NodePath("../../../Control/Interact")
 object_holder = NodePath("../../../Hand")
 
-[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("drop_label", "hand")]
+[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("keybinds_label", "hand")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26523185, 1.0320841, -1.3284174)
 script = ExtResource("3_6t5aa")
-drop_label = NodePath("../Control/Drop")
+keybinds_label = NodePath("../Control/Keybinds")
 hand = NodePath(".")
 
 [node name="Control" type="Control" parent="."]
@@ -66,18 +68,16 @@ text = "'E'"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Drop" type="Label" parent="Control"]
-visible = false
+[node name="Keybinds" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 62.0
+offset_top = -335.0
+offset_right = 254.0
 grow_vertical = 0
-text = "Drop - Q"
-horizontal_alignment = 1
 vertical_alignment = 2
+script = ExtResource("4_fkybt")
 
 [node name="Money" type="RichTextLabel" parent="Control"]
 modulate = Color(0, 1, 0.116666794, 1)
@@ -85,3 +85,34 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 text = "0$"
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -52.0
+offset_right = 114.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 1

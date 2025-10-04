@@ -12,8 +12,6 @@ signal destroyed
 var being_held: bool = false
 var current_holder: Node = null
 
-# --- Pickup / Drop ---
-
 func pickup():
 	collider.disabled = true
 	rb.linear_velocity = Vector3.ZERO
@@ -53,17 +51,14 @@ func can_interact(interactor) -> bool:
 func interact_text() -> String:
 	return "Pickup " + name
 
-func start_using(direction: Vector3) -> void:
-	pass
-
-func continue_using(direction: Vector3) -> void:
-	pass
-
-func finish_using(direction: Vector3) -> void:
+func use(direction: Vector3, started: bool = false, finished: bool = false) -> void:
 	pass
 
 func rotate_vertically() -> bool:
 	return false
 
+func useable() -> bool:
+	return false
+
 func _exit_tree():
-	emit_signal("destroyed")
+	destroyed.emit()
