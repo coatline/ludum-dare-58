@@ -3,24 +3,19 @@ extends Node3D
 
 @export var hand: Node3D
 
-var holdable_object: Node = null
+var holdable_object: HoldableObject = null
 
 func pickup(obj):
-	#SoundManager.play_sound("PickupObject", global_transform.origin)
 	holdable_object = obj
 	holdable_object.pickup()
 	
-	if holdable_object.has_signal("left_hand"):
-		holdable_object.connect("left_hand", Callable(self, "_holdable_object_left_hand"))
-	if holdable_object.has_signal("destroyed"):
-		holdable_object.connect("destroyed", Callable(self, "_holdable_object_left_hand"))
+	holdable_object.left_hand.connect(object_left)
+	holdable_object.destroyed.connect(object_left)
 
-func _holdable_object_left_hand():
+func object_left():
 	if holdable_object:
-		if holdable_object.is_connected("left_hand", _holdable_object_left_hand):
-			holdable_object.disconnect("left_hand", _holdable_object_left_hand)
-		if holdable_object.is_connected("destroyed", _holdable_object_left_hand):
-			holdable_object.disconnect("destroyed", _holdable_object_left_hand)
+		holdable_object.left_hand.connect(object_left)
+		holdable_object.destroyed.connect(object_left)
 		holdable_object = null
 
 func try_drop():
@@ -45,7 +40,7 @@ func _process(_delta):
 		var rot_x = 0
 		if holdable_object.rotate_vertically:
 			rot_x = get_viewport().get_camera_3d().rotation.x
-		var rot = Vector3(rot_x, hand.rotation.y, hand.rotation.z)
+		var rot = Vector3(rot_x, hand.global_rotation_degrees.y, hand.global_rotation_degrees.z)
 		holdable_object.hold(hand.global_transform.origin, rot)
 
 func has_item() -> bool:

@@ -7,6 +7,7 @@ signal destroyed
 
 @export var rb: RigidBody3D
 @export var drop_force: float = 10.0
+@export var collider: CollisionShape3D
 
 var being_held: bool = false
 var current_holder: Node = null
@@ -14,8 +15,7 @@ var current_holder: Node = null
 # --- Pickup / Drop ---
 
 func pickup():
-	if not rb:
-		return
+	collider.disabled = true
 	rb.linear_velocity = Vector3.ZERO
 	rb.angular_velocity = Vector3.ZERO
 
@@ -23,31 +23,27 @@ func pickup():
 	rb.gravity_scale = 0.0
 
 	being_held = true
-	emit_signal("picked_up")
+	picked_up.emit()
 
 func drop(direction: Vector3):
 	leave_hand()
-	if rb:
-		rb.linear_velocity = direction.normalized() * drop_force
+	rb.linear_velocity = direction.normalized() * drop_force
 
 func leave_hand():
-	if not rb:
-		return
+	collider.disabled = false
 	rb.contact_monitor = true
 	rb.gravity_scale = 1.0
 
 	being_held = false
 	current_holder = null
-	emit_signal("left_hand")
+	left_hand.emit()
 
-func hold(position: Vector3, rotation: Vector3):
+func hold(pos: Vector3, rot: Vector3):
 	being_held = true
-	global_transform.origin = position
-	rotation_degrees = rotation
+	global_transform.origin = pos
+	rotation_degrees = rot
 
 func interact(interactor):
-	print()
-	#if interactor.has_propert("object_holder"):
 	interactor.object_holder.pickup(self)
 	current_holder = interactor.object_holder
 
@@ -66,10 +62,8 @@ func continue_using(direction: Vector3) -> void:
 func finish_using(direction: Vector3) -> void:
 	pass
 
-# --- Properties ---
 func rotate_vertically() -> bool:
 	return false
 
-# --- Destruction ---
 func _exit_tree():
 	emit_signal("destroyed")

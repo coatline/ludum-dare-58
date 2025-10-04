@@ -19,7 +19,7 @@ func _physics_process(delta):
 				hovered_object = collider
 				hovered_object.emit_signal("hovered", true)
 			
-			interact_label.text = collider.display_name + " (e)"
+			interact_label.text = collider.display_name + " - E"
 			if Input.is_action_just_pressed("interact"):
 				collider.interact(self)
 		else:

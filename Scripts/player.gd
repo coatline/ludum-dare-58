@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var sensitivity = 0.2
 @export var min_angle = -80
 @export var max_angle = 90
+@export var object_holder : ObjectHolder
 
 @onready var head = $Head
 @onready var collision_shape = $CollisionShape3D
@@ -24,6 +25,9 @@ func _ready():
 func _physics_process(delta):
 	var move_speed = speed
 	
+	if Input.is_action_just_pressed("drop"):
+		object_holder.try_drop()
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
@@ -31,9 +35,9 @@ func _physics_process(delta):
 			velocity.y = jump
 		elif Input.is_action_pressed("crouch"):
 			move_speed = crouch_speed
-			crouch(delta)
-		else:
 			crouch(delta, true)
+		else:
+			crouch(delta)
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

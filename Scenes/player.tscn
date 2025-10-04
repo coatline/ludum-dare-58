@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/player_interact.gd" id="2_cvnsp"]
-[ext_resource type="Script" uid="uid://chg8iermxxu7c" path="res://Scripts/object_holder.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/player_object_holder.gd" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2poj3"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("object_holder")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_v0iea")
 sensitivity = 0.1
+object_holder = NodePath("Hand")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -32,12 +33,13 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34058595)
 target_position = Vector3(0, 0, -2)
 script = ExtResource("2_cvnsp")
-interact_label = NodePath("../../../Control/Label")
+interact_label = NodePath("../../../Control/Interact")
 object_holder = NodePath("../../../Hand")
 
-[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("hand")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26523185, 1.0320841, -1.2243512)
+[node name="Hand" type="Node3D" parent="." node_paths=PackedStringArray("drop_label", "hand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26523185, 1.0320841, -1.3284174)
 script = ExtResource("3_6t5aa")
+drop_label = NodePath("../Control/Drop")
 hand = NodePath(".")
 
 [node name="Control" type="Control" parent="."]
@@ -48,7 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Interact" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -63,3 +65,23 @@ grow_vertical = 0
 text = "'E'"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Drop" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 62.0
+grow_vertical = 0
+text = "Drop - Q"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Money" type="RichTextLabel" parent="Control"]
+modulate = Color(0, 1, 0.116666794, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "0$"
