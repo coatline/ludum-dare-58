@@ -1,31 +1,23 @@
-extends Label
+extends RichTextLabel
 class_name KeybindsLabel
 
-var keys_dict = {"drop_item": false, "use_item": false, "interact" : false}
-var keys_order = ["interact", "drop_item", "use_item"]
+var keys = {}
 
-var control_scheme = "keyboard"
+func show_keybind(message: String, input_action: String) -> void:
+	var keybind = KeybindHelper.get_keybind_display(input_action)
+	keys[input_action] = keybind + ": " + message
+	update_text()
 
-var display_names = {
-	"keyboard": {"drop_item": "Drop - Q", "use_item": "Use - LMB", "interact": "Interact - E"},
-	"gamepad": {"drop_item": "Drop - X", "use_item": "Use - RT", "interact": "Interact - A"}
-}
-
-func _init() -> void:
-	keys_order.reverse()
-
-func toggle_keybind(key: String, enabled: bool) -> void:
-	if key in keys_dict:
-		keys_dict[key] = enabled
+func hide_keybind(input_action: String) -> void:
+	keys.erase(input_action)
 	update_text()
 
 func update_text():
 	var key_index = 0
 	text = ""
 	
-	for key in keys_order:
-		if keys_dict[key]:
-			if key_index > 0:
-				text += "\n"
-			text += display_names[control_scheme].get(key, key)
-			key_index += 1
+	for key in keys:
+		if key_index > 0:
+			text += "\n"
+		text += keys[key]
+		key_index += 1

@@ -11,9 +11,10 @@ extends RigidBody3D
 @export var max_angle = 90
 @export var object_holder : ObjectHolder
 
-@onready var head = $Head
 @onready var collision_shape = $CollisionShape3D
 @onready var jump_raycast: RayCast3D = $JumpRaycast
+@onready var head: Node3D = $Head
+@onready var hand: Node3D = $Head/Hand
 
 var focused: bool = true
 var stand_height: float
@@ -25,12 +26,13 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		angular_velocity = Vector3.ZERO
 		look_rot = Vector2.ZERO
 		return
 	
 	var move_speed = speed
 	
-	if Input.is_action_just_pressed("drop"):
+	if Input.is_action_just_pressed("drop_item"):
 		object_holder.try_drop()
 	if Input.is_action_pressed("use_item"):
 		object_holder.try_use(delta, Input.is_action_just_pressed("use_item"), false)
@@ -59,7 +61,7 @@ func _physics_process(delta):
 	rotation_degrees.y = look_rot.y
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		look_rot.y -= (event.relative.x * sensitivity)
 		look_rot.x -= (event.relative.y * sensitivity)
 		look_rot.x = clamp(look_rot.x, min_angle, max_angle)

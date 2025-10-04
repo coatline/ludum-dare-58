@@ -8,6 +8,7 @@ signal destroyed
 @export var rb: RigidBody3D
 @export var drop_force: float = 10.0
 @export var collider: CollisionShape3D
+@export var display_name: String
 
 var being_held: bool = false
 var current_holder: Node = null
@@ -48,17 +49,13 @@ func interact(interactor):
 func can_interact(interactor) -> bool:
 	return not interactor.object_holder.has_item()
 
-func interact_text() -> String:
-	return "Pickup " + name
-
 func use(direction: Vector3, delta: float, started: bool = false, finished: bool = false) -> void:
 	pass
 
-func rotate_vertically() -> bool:
-	return false
-
-func useable() -> bool:
-	return false
-
 func _exit_tree():
 	destroyed.emit()
+
+func useable() -> bool: return false
+func rotate_vertically() -> bool: return true
+func use_text() -> String: return "Use " + display_name
+func interact_text(interactor: PlayerInteractor) -> String: return "Pickup " + display_name

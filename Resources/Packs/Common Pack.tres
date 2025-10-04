@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardPackType" load_steps=3 format=3 uid="uid://chnbyayjiw6i1"]
+
+[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/card_type.gd" id="1_wcso6"]
+[ext_resource type="Script" uid="uid://crox7156djc78" path="res://Scripts/card_pack_type.gd" id="2_ob02j"]
+
+[resource]
+script = ExtResource("2_ob02j")
+open_time = 0.1
+card_count = 5
+price = 2.0
+metadata/_custom_type_script = "uid://crox7156djc78"

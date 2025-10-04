@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://rwtxgxevspvg" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://77uw5vitr3ja" path="res://Scripts/holdable_object.gd" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/card_pack.tscn" id="3_3dryh"]
-[ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="4_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dv7rsc3ce2imj" path="res://Scenes/card.tscn" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://cab7ac4gtl8fm" path="res://Scripts/shop_keeper.gd" id="5_wowpa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ebmjs"]
@@ -76,7 +76,9 @@ skeleton = NodePath("../..")
 
 [node name="CardPack" parent="." instance=ExtResource("3_3dryh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026085377, 1.3867435, -2.4191875)
-pack_type = ExtResource("4_wowpa")
+
+[node name="Card" parent="." instance=ExtResource("4_3dryh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15572906, 0.6983392, -2.1169214)
 
 [node name="ShopKeeper" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3114581, 1.0966785, -4.233843)

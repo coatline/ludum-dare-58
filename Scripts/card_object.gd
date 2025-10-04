@@ -10,3 +10,4 @@ func set_card_type(type: CardType):
 	mat = mat.duplicate()
 	mat.albedo_texture = card_type.texture
 	mesh_instance_3d.set_surface_override_material(0, mat)
+	display_name = type.display_name()

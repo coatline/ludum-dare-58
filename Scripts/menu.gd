@@ -5,7 +5,6 @@ extends Control
 
 func _on_play_pressed():
 	SoundManager.PlaySound(playSound)
-	print("Playing")
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 

@@ -22,18 +22,19 @@ func _physics_process(delta):
 					hovered_object = interactable
 					hovered_object.hovered.emit(true)
 				
-				keybinds_label.toggle_keybind("interact", true)
-				
 				if Input.is_action_just_pressed("interact"):
+					keybinds_label.hide_keybind("interact")
 					collider.interact(self)
-		else:
-			_clear_hover()
-	else:
-		_clear_hover()
+				else:
+					keybinds_label.show_keybind(interactable.interact_text(self), "interact")
+				
+				return
+	
+	_clear_hover()
 
 func _clear_hover():
 	if hovered_object:
 		hovered_object.hovered.emit(false)
 		hovered_object = null
 	
-	keybinds_label.toggle_keybind("interact", false)
+	keybinds_label.hide_keybind("interact")

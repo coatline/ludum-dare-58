@@ -6,8 +6,7 @@ var resources: Dictionary = {}
 
 func _ready():
 	_load_all_resources(resource_folder)
-	print("Loaded resources:", resources)
-
+	# print("Loaded resources:", resources)
 
 func _load_all_resources(folder_path: String):
 	var dir := DirAccess.open(folder_path)

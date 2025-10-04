@@ -31,7 +31,7 @@ func _process(_delta):
 	if holdable_object:
 		var rot_x = 0
 		if holdable_object.rotate_vertically:
-			rot_x = get_viewport().get_camera_3d().rotation.x
+			rot_x = hand.global_rotation_degrees.x
 		var rot = Vector3(rot_x, hand.global_rotation_degrees.y, hand.global_rotation_degrees.z)
 		holdable_object.hold(hand.global_transform.origin, rot)
 
