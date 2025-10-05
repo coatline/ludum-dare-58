@@ -2,16 +2,20 @@ extends HoldableObject
 
 const CARD: PackedScene = preload("uid://dv7rsc3ce2imj")
 
-@export var pack_type: CardPackType = null
+@export var starting_pack_type: CardPackType = null
+var pack_type: CardPackType
 var open_amount: float = 0
 
 func set_type(type: CardPackType):
-	display_name = pack_type.display_name()
 	pack_type = type
+	display_name = pack_type.display_name()
 
 func _ready() -> void:
-	if pack_type:
-		set_type(pack_type)
+	if pack_type == null:
+		if starting_pack_type:
+			set_type(starting_pack_type)
+		else:
+			set_type(ResourceManager.get_random_resource(CardPackType))
 
 func use(direction: Vector3, delta: float, started: bool = false, finished: bool = false) -> void:
 	if finished:
@@ -24,13 +28,16 @@ func use(direction: Vector3, delta: float, started: bool = false, finished: bool
 		open()
 
 func open():
-	for i in range(pack_type.card_count):
+	var cards = pack_type.get_random_cards()
+
+	for card in cards:
 		var card_instance: CardObject = CARD.instantiate()
 		get_parent().add_child(card_instance)
 		card_instance.global_transform.origin = global_transform.origin
-		var card_type = ResourceManager.get_random_resource(CardType)
-		card_instance.set_card_type(card_type)
+		card_instance.set_card_type(card)
 	
 	queue_free()
 
 func useable() -> bool: return true
+func text_color() -> Color: return pack_type.rarity.color
+func use_text() -> String: return "Use " + Utils.color_string_with_rarity(display_name, pack_type.rarity)

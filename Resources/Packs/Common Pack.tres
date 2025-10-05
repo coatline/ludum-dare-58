@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="CardPackType" load_steps=3 format=3 uid="uid://chnbyayjiw6i1"]
+[gd_resource type="Resource" script_class="CardPackType" load_steps=6 format=3 uid="uid://chnbyayjiw6i1"]
 
 [ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/card_type.gd" id="1_wcso6"]
 [ext_resource type="Script" uid="uid://crox7156djc78" path="res://Scripts/card_pack_type.gd" id="2_ob02j"]
+[ext_resource type="Resource" uid="uid://chxamap2tc3jm" path="res://Resources/Cards/Common/Common Card.tres" id="2_yssrb"]
+[ext_resource type="Resource" uid="uid://b0n2ncgv83eb4" path="res://Resources/Cards/Uncommon/Uncommon Card.tres" id="3_bu4fe"]
+[ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="4_bu4fe"]
 
 [resource]
 script = ExtResource("2_ob02j")
+cards = Array[ExtResource("1_wcso6")]([ExtResource("2_yssrb"), ExtResource("3_bu4fe")])
 open_time = 0.1
 card_count = 5
+rarity = ExtResource("4_bu4fe")
 price = 2.0
 metadata/_custom_type_script = "uid://crox7156djc78"

@@ -11,3 +11,5 @@ func set_card_type(type: CardType):
 	mat.albedo_texture = card_type.texture
 	mesh_instance_3d.set_surface_override_material(0, mat)
 	display_name = type.display_name()
+
+func text_color() -> Color: return card_type.rarity.color

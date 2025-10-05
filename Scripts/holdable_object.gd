@@ -6,7 +6,6 @@ signal left_hand
 signal destroyed
 
 @export var rb: RigidBody3D
-@export var drop_force: float = 10.0
 @export var collider: CollisionShape3D
 @export var display_name: String
 
@@ -24,9 +23,9 @@ func pickup():
 	being_held = true
 	picked_up.emit()
 
-func drop(direction: Vector3):
+func drop(direction: Vector3, force: float):
 	leave_hand()
-	rb.linear_velocity = direction.normalized() * drop_force
+	rb.linear_velocity = direction.normalized() * force
 
 func leave_hand():
 	collider.disabled = false
@@ -57,5 +56,6 @@ func _exit_tree():
 
 func useable() -> bool: return false
 func rotate_vertically() -> bool: return true
-func use_text() -> String: return "Use " + display_name
-func interact_text(interactor: PlayerInteractor) -> String: return "Pickup " + display_name
+func text_color() -> Color: return Color.DARK_SALMON
+func use_text() -> String: return Utils.get_verb_item_string("Use ", self)
+func interact_text(interactor: PlayerInteractor) -> String: return Utils.get_verb_item_string("Pickup ", self)

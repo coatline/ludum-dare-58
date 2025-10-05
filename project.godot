@@ -21,6 +21,7 @@ SoundManager="*res://Scripts/sound_manager.gd"
 MoneyManager="*res://Scripts/money_manager.gd"
 ResourceManager="*res://Scripts/resource_manager.gd"
 KeybindHelper="*res://Scripts/keybind_helper.gd"
+Utils="*res://Scripts/utils.gd"
 
 [debug]
 

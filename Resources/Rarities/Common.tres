@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Rarity" load_steps=2 format=3 uid="uid://b38m7dnsf7ian"]
+
+[ext_resource type="Script" uid="uid://cyoknvg1i1qxq" path="res://Scripts/rarity.gd" id="1_k565x"]
+
+[resource]
+script = ExtResource("1_k565x")
+color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+display_name = "Common"
+rarity_weight = 1.0
+metadata/_custom_type_script = "uid://cyoknvg1i1qxq"

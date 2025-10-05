@@ -16,4 +16,8 @@ func can_interact(interactor: PlayerInteractor) -> bool:
 func interact_text(interactor: PlayerInteractor) -> String:
 	var card: CardObject = interactor.object_holder.holdable_object as CardObject
 	var type: CardType = card.card_type
-	return "Sell %s [color=green]$%.2f[/color]" % [type.display_name(), type.price]
+	return "Sell [color=%s]%s[/color] for [color=green]$%.2f[/color]" % [
+	card.text_color().to_html(),
+	type.display_name(),
+	type.price
+]

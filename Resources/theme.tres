@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://3bvp6qws6y0d"]
+
+[ext_resource type="FontFile" uid="uid://ml0njc00vg57" path="res://Libre_Baskerville/LibreBaskerville-Regular.ttf" id="1_ho8mu"]
+
+[resource]
+Control/constants/outline_size = 5
+Control/fonts/font = ExtResource("1_ho8mu")

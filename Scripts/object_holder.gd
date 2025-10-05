@@ -18,9 +18,9 @@ func object_gone():
 		holdable_object.destroyed.disconnect(object_gone)
 		holdable_object = null
 
-func try_drop():
+func try_drop(force: float):
 	if holdable_object:
-		holdable_object.drop(-global_transform.basis.z)
+		holdable_object.drop(-global_transform.basis.z, force)
 		#SoundManager.play_sound("DropObject", hand.global_transform.origin)
 
 func try_use(delta: float, started: bool = false, finished: bool = false) -> void:

@@ -9,7 +9,6 @@ extends RigidBody3D
 @export var sensitivity = 0.2
 @export var min_angle = -80
 @export var max_angle = 90
-@export var object_holder : ObjectHolder
 
 @onready var collision_shape = $CollisionShape3D
 @onready var jump_raycast: RayCast3D = $JumpRaycast
@@ -31,13 +30,6 @@ func _physics_process(delta):
 		return
 	
 	var move_speed = speed
-	
-	if Input.is_action_just_pressed("drop_item"):
-		object_holder.try_drop()
-	if Input.is_action_pressed("use_item"):
-		object_holder.try_use(delta, Input.is_action_just_pressed("use_item"), false)
-	if Input.is_action_just_released("use_item"):
-		object_holder.try_use(delta, false, true)
 	
 	if jump_raycast.is_colliding():
 		if Input.is_action_just_pressed("jump"):

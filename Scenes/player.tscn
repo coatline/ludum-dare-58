@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=10 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/player_interact.gd" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/player_object_holder.gd" id="3_6t5aa"]
+[ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/keybinds_label.gd" id="4_fkybt"]
 [ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/money_text.gd" id="5_x3wgy"]
@@ -11,12 +12,11 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2poj3"]
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("object_holder")]
+[node name="Player" type="RigidBody3D"]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_v0iea")
 sensitivity = 0.1
-object_holder = NodePath("Head/Hand")
 
 [node name="JumpRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07603389, 0)
@@ -41,14 +41,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34058595)
 target_position = Vector3(0, 0, -2)
 hit_from_inside = true
 script = ExtResource("2_cvnsp")
-interact_distance = 2.0
+interact_distance = 1.5
 object_holder = NodePath("../../Hand")
 keybinds_label = NodePath("../../../Control/Keybinds")
 
-[node name="Hand" type="Node3D" parent="Head" node_paths=PackedStringArray("keybinds_label", "hand")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5187278, -0.38794458, -0.85890615)
+[node name="Hand" type="Node3D" parent="Head" node_paths=PackedStringArray("progress_bar", "keybinds_label", "object_holder", "hand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5263136, -0.2879461, -0.7328373)
 script = ExtResource("3_6t5aa")
+progress_bar = NodePath("../../Control/ThrowProgressBar")
 keybinds_label = NodePath("../../Control/Keybinds")
+object_holder = NodePath(".")
 hand = NodePath(".")
 
 [node name="Control" type="Control" parent="."]
@@ -58,6 +60,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_3smsa")
 
 [node name="Keybinds" type="RichTextLabel" parent="Control"]
 layout_mode = 1
@@ -80,7 +83,7 @@ text = "$0"
 scroll_active = false
 script = ExtResource("5_x3wgy")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="CenterIndicator" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,3 +98,19 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vgqql")
 expand_mode = 1
+
+[node name="ThrowProgressBar" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -19.0
+offset_right = 102.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+show_percentage = false
