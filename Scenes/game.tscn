@@ -111,6 +111,15 @@ shape = SubResource("BoxShape3D_qxrlw")
 mesh = SubResource("BoxMesh_wrm1d")
 skeleton = NodePath("../..")
 
+[node name="CardPack4" parent="." instance=ExtResource("3_3dryh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.383759, 4.1602306, -0.4805975)
+
+[node name="CardPack3" parent="." instance=ExtResource("3_3dryh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0886812, 3.9542022, 0.48869753)
+
+[node name="CardPack2" parent="." instance=ExtResource("3_3dryh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6788368, 2.773487, -1.4498925)
+
 [node name="CardPack" parent="." instance=ExtResource("3_3dryh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026085377, 1.3867435, -2.4191875)
 

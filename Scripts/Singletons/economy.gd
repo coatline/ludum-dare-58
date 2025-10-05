@@ -12,7 +12,7 @@ var last_simulated_time: int = 0
 func _ready() -> void:
 	var rarities = ResourceManager.get_resources(Rarity)
 	for rarity in rarities:
-		markets[rarity] = Market.new(rarity.base_price, 0.75, 0.00001)
+		markets[rarity] = Market.new(rarity.base_price, 0.2, 0.00001)
 
 func _process(delta: float) -> void:
 	var updated: bool = false
@@ -29,3 +29,9 @@ func _process(delta: float) -> void:
 	
 	if updated:
 		economy_updated.emit()
+
+func get_market_price(rarity: Rarity) -> float:
+	if rarity in markets:
+		return markets[rarity].current_price
+	
+	return 0.0

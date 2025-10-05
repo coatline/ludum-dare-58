@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv7rsc3ce2imj"]
+[gd_scene load_steps=6 format=3 uid="uid://dv7rsc3ce2imj"]
 
 [ext_resource type="Script" uid="uid://onl5nq8141yf" path="res://Scripts/Cards/card_object.gd" id="1_0qqmn"]
+[ext_resource type="Material" uid="uid://tb3b75bhbkge" path="res://Materials/card_material.tres" id="2_wf8id"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3dryh"]
 size = Vector3(0.2685547, 0.36938477, 0.044921875)
@@ -8,7 +9,8 @@ size = Vector3(0.2685547, 0.36938477, 0.044921875)
 [sub_resource type="BoxMesh" id="BoxMesh_wowpa"]
 size = Vector3(0.25, 0.35, 0.01)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qqmn"]
+[sub_resource type="QuadMesh" id="QuadMesh_wf8id"]
+size = Vector2(0.25, 0.35)
 
 [node name="Card" type="RigidBody3D" node_paths=PackedStringArray("rb", "collider")]
 script = ExtResource("1_0qqmn")
@@ -19,5 +21,14 @@ collider = NodePath("CollisionShape3D")
 shape = SubResource("BoxShape3D_3dryh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
 mesh = SubResource("BoxMesh_wowpa")
-surface_material_override/0 = SubResource("StandardMaterial3D_0qqmn")
+surface_material_override/0 = ExtResource("2_wf8id")
+
+[node name="Face" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("QuadMesh_wf8id")
+
+[node name="Face2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.0038371682)
+mesh = SubResource("QuadMesh_wf8id")
+skeleton = NodePath("../Face")

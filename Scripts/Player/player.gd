@@ -42,7 +42,6 @@ func _physics_process(delta):
 	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		angular_velocity = Vector3.ZERO
-		look_rot = Vector2.ZERO
 		return
 	
 	var move_speed = speed

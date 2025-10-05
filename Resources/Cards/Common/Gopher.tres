@@ -2,11 +2,10 @@
 
 [ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="1_id5as"]
 [ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="1_s5yb4"]
-[ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="2_id5as"]
+[ext_resource type="Texture2D" uid="uid://djo5i8b4ut3gh" path="res://Graphics/Card_test.png" id="3_id5as"]
 
 [resource]
 script = ExtResource("1_s5yb4")
 rarity = ExtResource("1_id5as")
-price = 0.5
-texture = ExtResource("2_id5as")
+texture = ExtResource("3_id5as")
 metadata/_custom_type_script = "uid://dsonpbif12sdy"

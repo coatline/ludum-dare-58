@@ -4,7 +4,7 @@ func interact(interactor: PlayerInteractor):
 	var card: CardObject = interactor.object_holder.holdable_object as CardObject
 	var type: CardType = card.card_type
 	
-	MoneyManager.modify_funds(type.price)
+	MoneyManager.modify_funds(Economy.get_market_price(type.rarity))
 	interactor.object_holder.holdable_object.queue_free()
 
 func can_interact(interactor: PlayerInteractor) -> bool:
@@ -19,5 +19,5 @@ func interact_text(interactor: PlayerInteractor) -> String:
 	return "Sell [color=%s]%s[/color] for [color=green]$%.2f[/color]" % [
 	card.text_color().to_html(),
 	type.display_name(),
-	type.price
+	Economy.get_market_price(type.rarity)
 ]
