@@ -4,4 +4,5 @@
 
 [resource]
 Control/constants/outline_size = 5
+Control/font_sizes/font_size = 24
 Control/fonts/font = ExtResource("1_ho8mu")

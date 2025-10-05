@@ -40,4 +40,4 @@ func open():
 
 func useable() -> bool: return true
 func text_color() -> Color: return pack_type.rarity.color
-func use_text() -> String: return "Use " + Utils.color_string_with_rarity(display_name, pack_type.rarity)
+func use_text() -> String: return "Open " + Utils.color_string_with_rarity(display_name, pack_type.rarity)

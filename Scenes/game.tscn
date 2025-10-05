@@ -1,11 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://db4sxar4lhac1"]
+[gd_scene load_steps=26 format=3 uid="uid://db4sxar4lhac1"]
 
 [ext_resource type="PackedScene" uid="uid://rwtxgxevspvg" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Material" uid="uid://fhqebad1dayb" path="res://Materials/floor_material.tres" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b3xnamncjiyk" path="res://Scenes/table.tscn" id="2_i6g32"]
 [ext_resource type="Script" uid="uid://77uw5vitr3ja" path="res://Scripts/holdable_object.gd" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/card_pack.tscn" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://cab7ac4gtl8fm" path="res://Scripts/shop_keeper.gd" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://cd8q6trpw52qa" path="res://Scenes/editor_visibility.gd" id="6_i6g32"]
+[ext_resource type="Material" uid="uid://dnj08t5lq2ukj" path="res://Materials/light_material.tres" id="8_v158k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ebmjs"]
 size = Vector3(20, 0.5, 20)
@@ -15,6 +17,8 @@ size = Vector3(20, 0.5, 20)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebmjs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ebmjs"]
+sky_top_color = Color(0.46700692, 0.7043296, 0.7826305, 1)
+sky_horizon_color = Color(0.8085144, 0.81358844, 0.8237302, 1)
 
 [sub_resource type="Sky" id="Sky_qxrlw"]
 sky_material = SubResource("ProceduralSkyMaterial_ebmjs")
@@ -22,6 +26,14 @@ sky_material = SubResource("ProceduralSkyMaterial_ebmjs")
 [sub_resource type="Environment" id="Environment_ebmjs"]
 background_mode = 2
 sky = SubResource("Sky_qxrlw")
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.15
+glow_hdr_threshold = 1.3
+adjustment_enabled = true
+adjustment_saturation = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qxrlw"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -52,6 +64,11 @@ size = Vector3(25, 0.25, 25)
 [sub_resource type="BoxMesh" id="BoxMesh_1l0tm"]
 size = Vector3(25, 0.25, 25)
 
+[sub_resource type="SphereMesh" id="SphereMesh_1l0tm"]
+material = ExtResource("8_v158k")
+radius = 0.25
+height = 0.5
+
 [node name="Game" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
@@ -64,6 +81,7 @@ shape = SubResource("BoxShape3D_ebmjs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0.25, 0)
+material_override = ExtResource("2_1l0tm")
 mesh = SubResource("PlaneMesh_ebmjs")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ebmjs")
@@ -74,6 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.84600717, 0.5331716, 0, -0.5331716, 0.84600717, 0, -10.663631, 0)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ebmjs")
@@ -200,3 +219,92 @@ shape = SubResource("BoxShape3D_i6g32")
 visible = false
 mesh = SubResource("BoxMesh_1l0tm")
 script = ExtResource("6_i6g32")
+
+[node name="Wall9" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.4999988, 1.3, -10.100001)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall9/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall10" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.499999, 1.3, -10.100001)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall10/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall11" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.500001, 1.3, -10.100001)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall11/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall12" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000012, 1.3, -10.100001)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall12/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall13" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.4999998, 1.3, 10.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall13/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall14" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.5, 1.3, 10.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall14/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall15" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.5, 1.3, 10.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall15/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="Wall16" type="StaticBody3D" parent="House"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000002, 1.3, 10.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House/Wall16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
+shape = SubResource("BoxShape3D_wowpa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall16/CollisionShape3D"]
+mesh = SubResource("BoxMesh_i6g32")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.599972, 0)
+mesh = SubResource("SphereMesh_1l0tm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+light_color = Color(1, 1, 0.827451, 1)
+light_energy = 4.0
+omni_range = 15.0
