@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=4 format=3 uid="uid://beqy0qu17eoe1"]
 
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="1_834wr"]
-[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/card_type.gd" id="2_tu716"]
+[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="2_tu716"]
 [ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="3_tvpr6"]
 
 [resource]

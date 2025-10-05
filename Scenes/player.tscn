@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://rwtxgxevspvg"]
 
-[ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/player_interact.gd" id="2_cvnsp"]
-[ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/player_object_holder.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/Player/player_object_holder.gd" id="3_6t5aa"]
 [ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="4_3smsa"]
-[ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/keybinds_label.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/UI/keybinds_label.gd" id="4_fkybt"]
 [ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
-[ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/money_text.gd" id="5_x3wgy"]
+[ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/UI/money_text.gd" id="5_x3wgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 

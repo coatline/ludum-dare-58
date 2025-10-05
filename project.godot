@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoundManager="*res://Scripts/sound_manager.gd"
-MoneyManager="*res://Scripts/money_manager.gd"
-ResourceManager="*res://Scripts/resource_manager.gd"
-KeybindHelper="*res://Scripts/keybind_helper.gd"
-Utils="*res://Scripts/utils.gd"
+SoundManager="*res://Scripts/Singletons/sound_manager.gd"
+MoneyManager="*res://Scripts/Singletons/money_manager.gd"
+ResourceManager="*res://Scripts/Singletons/resource_manager.gd"
+KeybindHelper="*res://Scripts/Singletons/keybind_helper.gd"
+Utils="*res://Scripts/Singletons/utils.gd"
 
 [debug]
 

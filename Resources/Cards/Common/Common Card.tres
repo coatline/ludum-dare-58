@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=4 format=3 uid="uid://chxamap2tc3jm"]
 
 [ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="1_id5as"]
-[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/card_type.gd" id="1_s5yb4"]
+[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="1_s5yb4"]
 [ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="2_id5as"]
 
 [resource]

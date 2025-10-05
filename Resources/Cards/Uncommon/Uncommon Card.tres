@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardType" load_steps=4 format=3 uid="uid://b0n2ncgv83eb4"]
 
-[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/card_type.gd" id="1_dasds"]
+[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="1_dasds"]
 [ext_resource type="Resource" uid="uid://cmmp7dberogj0" path="res://Resources/Rarities/Uncommon.tres" id="1_elk3p"]
 [ext_resource type="Texture2D" uid="uid://4xv7ag7w05ot" path="res://icon.svg" id="2_g0ytm"]
 
