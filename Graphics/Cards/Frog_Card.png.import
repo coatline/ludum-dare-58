@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://idfwsjlebrqt"
-path="res://.godot/imported/Spider_Card.png-9660c08a1c515b2e9acd7065e3a729a5.ctex"
+uid="uid://dpndthvogsv8u"
+path="res://.godot/imported/Frog_Card.png-2c3b6645bcf900a1656af4915b0e2f68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spider_Card.png"
-dest_files=["res://.godot/imported/Spider_Card.png-9660c08a1c515b2e9acd7065e3a729a5.ctex"]
+source_file="res://Graphics/Cards/Frog_Card.png"
+dest_files=["res://.godot/imported/Frog_Card.png-2c3b6645bcf900a1656af4915b0e2f68.ctex"]
 
 [params]
 

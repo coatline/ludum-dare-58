@@ -2,6 +2,9 @@ extends HoldableObject
 
 const CARD: PackedScene = preload("uid://dv7rsc3ce2imj")
 
+@onready var back: MeshInstance3D = $CollisionShape3D/Back
+@onready var box: MeshInstance3D = $CollisionShape3D/Box
+@onready var face: MeshInstance3D = $CollisionShape3D/Face
 @export var starting_pack_type: CardPackType = null
 var pack_type: CardPackType
 var open_amount: float = 0
@@ -9,6 +12,13 @@ var open_amount: float = 0
 func set_type(type: CardPackType):
 	pack_type = type
 	display_name = pack_type.display_name()
+
+	var mat := Utils.get_new_material()
+	mat.albedo_color = Color(0.05, 0.05, 0.05)
+	box.set_surface_override_material(0, mat)
+	
+	Utils._apply_texture_to_face(face, type.front_texture)
+	Utils._apply_texture_to_face(back, type.front_texture)
 
 func _ready() -> void:
 	if pack_type == null:

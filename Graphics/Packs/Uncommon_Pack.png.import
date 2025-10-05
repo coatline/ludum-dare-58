@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j1pml1yekry7"
-path="res://.godot/imported/Pigeon_Card.png-c5e9ce0dd6cc9caa39a12c5286a6437d.ctex"
+uid="uid://dfsnlbl33rgk7"
+path="res://.godot/imported/Uncommon_Pack.png-69c1f6a6a81bb9ff57016c3befeb6ec2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Pigeon_Card.png"
-dest_files=["res://.godot/imported/Pigeon_Card.png-c5e9ce0dd6cc9caa39a12c5286a6437d.ctex"]
+source_file="res://Graphics/Packs/Uncommon_Pack.png"
+dest_files=["res://.godot/imported/Uncommon_Pack.png-69c1f6a6a81bb9ff57016c3befeb6ec2.ctex"]
 
 [params]
 

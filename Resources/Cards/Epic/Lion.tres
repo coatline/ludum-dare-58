@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="1_xpmce"]
 [ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="2_hcvn0"]
-[ext_resource type="Texture2D" uid="uid://2anrxll3ddnj" path="res://Graphics/Lettuce_Card.png" id="3_2mfef"]
+[ext_resource type="Texture2D" uid="uid://2anrxll3ddnj" path="res://Graphics/Cards/Lion_Card.png" id="3_2mfef"]
 
 [resource]
 script = ExtResource("2_hcvn0")

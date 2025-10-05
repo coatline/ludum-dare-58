@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2anrxll3ddnj"
-path="res://.godot/imported/Lettuce_Card.png-9acc009322f6b5e08b26269f8ba4a766.ctex"
+uid="uid://bkqh2yrqcn31s"
+path="res://.godot/imported/Common_Pack.png-298a480c1158e50ca1a1ef813129a872.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Lettuce_Card.png"
-dest_files=["res://.godot/imported/Lettuce_Card.png-9acc009322f6b5e08b26269f8ba4a766.ctex"]
+source_file="res://Graphics/Packs/Common_Pack.png"
+dest_files=["res://.godot/imported/Common_Pack.png-298a480c1158e50ca1a1ef813129a872.ctex"]
 
 [params]
 

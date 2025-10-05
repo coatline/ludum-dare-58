@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cmmp7dberogj0" path="res://Resources/Rarities/Uncommon.tres" id="1_6221o"]
 [ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="2_g0813"]
-[ext_resource type="Texture2D" uid="uid://j1pml1yekry7" path="res://Graphics/Pigeon_Card.png" id="3_6221o"]
+[ext_resource type="Texture2D" uid="uid://j1pml1yekry7" path="res://Graphics/Cards/Pigeon_Card.png" id="3_6221o"]
 
 [resource]
 script = ExtResource("2_g0813")

@@ -1,14 +1,22 @@
-[gd_resource type="Resource" script_class="CardPackType" load_steps=6 format=3 uid="uid://chnbyayjiw6i1"]
+[gd_resource type="Resource" script_class="CardPackType" load_steps=8 format=3 uid="uid://chnbyayjiw6i1"]
 
-[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="1_wcso6"]
+[ext_resource type="Script" uid="uid://cyoknvg1i1qxq" path="res://Scripts/Cards/rarity.gd" id="2_3n0bj"]
 [ext_resource type="Script" uid="uid://crox7156djc78" path="res://Scripts/Cards/card_pack_type.gd" id="2_ob02j"]
-[ext_resource type="Resource" uid="uid://chxamap2tc3jm" path="res://Resources/Cards/Common/Gopher.tres" id="2_yssrb"]
-[ext_resource type="Resource" uid="uid://b0n2ncgv83eb4" path="res://Resources/Cards/Uncommon/Frog.tres" id="3_bu4fe"]
+[ext_resource type="Resource" uid="uid://cmmp7dberogj0" path="res://Resources/Rarities/Uncommon.tres" id="4_1xmng"]
 [ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="4_bu4fe"]
+[ext_resource type="Texture2D" uid="uid://bkqh2yrqcn31s" path="res://Graphics/Packs/Common_Pack.png" id="5_3n0bj"]
+[ext_resource type="Resource" uid="uid://xlgh0dvhswyy" path="res://Resources/Rarities/Rare.tres" id="5_t1bio"]
+[ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="6_kemiy"]
 
 [resource]
 script = ExtResource("2_ob02j")
-cards = Array[ExtResource("1_wcso6")]([ExtResource("2_yssrb"), ExtResource("3_bu4fe")])
+front_texture = ExtResource("5_3n0bj")
+rarity_weights = Dictionary[ExtResource("2_3n0bj"), float]({
+ExtResource("4_bu4fe"): 1.0,
+ExtResource("4_1xmng"): 5.0,
+ExtResource("5_t1bio"): 25.0,
+ExtResource("6_kemiy"): 100.0
+})
 open_time = 0.1
 card_count = 5
 rarity = ExtResource("4_bu4fe")

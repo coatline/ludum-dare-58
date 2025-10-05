@@ -1,6 +1,6 @@
 extends Node
 
-const TICKS_PER_GAME_MINUTE: int = 5
+const TICKS_PER_GAME_MINUTE: int = 8
 
 signal tick_simulated(ticks: int)
 signal economy_updated

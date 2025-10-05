@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="1_e7h5v"]
 [ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="2_376pb"]
-[ext_resource type="Texture2D" uid="uid://y0cm61xs1xm6" path="res://Graphics/Bunny_Card.png" id="3_buqai"]
+[ext_resource type="Texture2D" uid="uid://y0cm61xs1xm6" path="res://Graphics/Cards/Bunny_Card.png" id="3_buqai"]
 
 [resource]
 script = ExtResource("2_376pb")
