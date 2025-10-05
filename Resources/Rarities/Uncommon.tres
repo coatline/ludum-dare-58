@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_qn1bg")
 color = Color(0, 1, 0, 1)
+base_price = 5.0
 display_name = "Uncommon"
 rarity_weight = 3.0
 metadata/_custom_type_script = "uid://cyoknvg1i1qxq"

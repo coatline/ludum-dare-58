@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=14 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/UI/keybinds_label.gd" id="4_fkybt"]
 [ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/UI/money_text.gd" id="5_x3wgy"]
+[ext_resource type="Script" uid="uid://bqmnb6u1014a7" path="res://Scripts/economy_ui.gd" id="8_8erm5"]
+[ext_resource type="PackedScene" uid="uid://ol2ddlj71lj8" path="res://Scenes/market_line.tscn" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://r26oy5f82dxr" path="res://Scripts/market_scale_button.gd" id="10_gymyn"]
+[ext_resource type="Script" uid="uid://brhe7jkr5gyem" path="res://Scripts/UI/time_ui.gd" id="10_tx1dd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 
@@ -85,6 +89,23 @@ text = "$0"
 scroll_active = false
 script = ExtResource("5_x3wgy")
 
+[node name="CenterIndicator3" type="TextureRect" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 1
+
 [node name="CenterIndicator" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -130,3 +151,158 @@ theme_override_font_sizes/font_size = 20
 text = "Force"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarketUI" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -262.0
+offset_right = 294.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_8erm5")
+market_line_prefab = ExtResource("9_f1ek2")
+max_price = 150.0
+
+[node name="VerticalUnits" type="Control" parent="Control/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HorizontalUnits" type="Control" parent="Control/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GraphPanel" type="Panel" parent="Control/MarketUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 212.0
+offset_right = -35.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeScale" type="Label" parent="Control/MarketUI/GraphPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -1.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "day"
+horizontal_alignment = 2
+
+[node name="ScaleButtons" type="HBoxContainer" parent="Control/MarketUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 105.0
+offset_top = 163.0
+offset_right = -104.0
+offset_bottom = 202.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ScaleButton" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1H"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+line_width = 6.0
+
+[node name="ScaleButton5" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "6H"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 360.0
+
+[node name="ScaleButton2" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1D"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 1440.0
+line_width = 4.0
+
+[node name="ScaleButton3" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "7D"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 10080.0
+line_width = 3.5
+
+[node name="ScaleButton4" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1M"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 43200.0
+line_width = 2.5
+
+[node name="ScaleButton6" type="Button" parent="Control/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1Y"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 525600.0
+line_width = 2.0
+
+[node name="MarketTexts" type="VBoxContainer" parent="Control/MarketUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_right = 210.0
+offset_bottom = 144.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Time" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme = ExtResource("4_3smsa")
+text = "1:00"
+horizontal_alignment = 2
+script = ExtResource("10_tx1dd")
+
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton" to="Control/MarketUI/ScaleButtons/ScaleButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton5" to="Control/MarketUI/ScaleButtons/ScaleButton5" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton2" to="Control/MarketUI/ScaleButtons/ScaleButton2" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton3" to="Control/MarketUI/ScaleButtons/ScaleButton3" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton4" to="Control/MarketUI/ScaleButtons/ScaleButton4" method="_on_pressed"]
+[connection signal="pressed" from="Control/MarketUI/ScaleButtons/ScaleButton6" to="Control/MarketUI/ScaleButtons/ScaleButton6" method="_on_pressed"]

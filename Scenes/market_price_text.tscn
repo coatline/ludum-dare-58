@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5qca7515lm7e"]
+
+[node name="MarketPriceText" type="Label"]
+offset_right = 40.0
+offset_bottom = 31.0
+horizontal_alignment = 1

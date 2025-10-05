@@ -47,3 +47,8 @@ func get_random_resource(cls: Variant) -> Resource:
 		return null
 
 	return arr[randi() % arr.size()]
+
+func get_resources(cls: Variant) -> Array:
+	if not resources.has(cls):
+		return []
+	return resources[cls]

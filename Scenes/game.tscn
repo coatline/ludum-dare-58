@@ -300,11 +300,11 @@ shape = SubResource("BoxShape3D_wowpa")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall16/CollisionShape3D"]
 mesh = SubResource("BoxMesh_i6g32")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Light" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.599972, 0)
 mesh = SubResource("SphereMesh_1l0tm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
 light_color = Color(1, 1, 0.827451, 1)
 light_energy = 4.0
 omni_range = 15.0

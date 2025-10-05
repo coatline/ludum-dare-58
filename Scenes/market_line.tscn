@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ol2ddlj71lj8"]
+
+[sub_resource type="GDScript" id="GDScript_uebvf"]
+script/source = "extends Line2D
+
+var market: Market
+
+func set_market(m: Market):
+	market = m
+"
+
+[node name="MarketLine" type="Line2D"]
+width = 5.0
+script = SubResource("GDScript_uebvf")

@@ -10,8 +10,9 @@ extends RigidBody3D
 @export var min_angle = -80
 @export var max_angle = 90
 
-@onready var collision_shape = $CollisionShape3D
+@onready var market_ui: MarketUI = $Control/MarketUI
 @onready var jump_raycast: RayCast3D = $JumpRaycast
+@onready var collision_shape = $CollisionShape3D
 @onready var head: Node3D = $Head
 @onready var hand: Node3D = $Head/Hand
 
@@ -24,6 +25,21 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
+	for i in range(10):
+		if Input.is_key_pressed(KEY_0 + i):
+			TimeManager.time_scale = i
+			if i > 2:
+				TimeManager.time_scale *= i * 5
+	
+	if Input.is_action_just_pressed("debug_reload"):
+		get_tree().reload_current_scene() 
+	
+	if Input.is_action_just_pressed("open_stocks"):
+		if market_ui.active:
+			market_ui.disable()
+		else:
+			market_ui.enable()
+	
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		angular_velocity = Vector3.ZERO
 		look_rot = Vector2.ZERO
@@ -62,7 +78,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	elif event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and market_ui.active == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func crouch(delta : float, reverse = false):
