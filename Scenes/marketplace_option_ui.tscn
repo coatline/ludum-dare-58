@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://b838i3tsnqtqb"]
+
+[ext_resource type="Script" uid="uid://dudmnur34et26" path="res://Scripts/UI/marketplace_option_ui.gd" id="1_w7000"]
+[ext_resource type="Texture2D" uid="uid://dfsnlbl33rgk7" path="res://Graphics/Packs/Uncommon_Pack.png" id="2_efq78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7000"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="MarketplaceOption" type="Panel" node_paths=PackedStringArray("progress_bar", "expiration_text", "background", "buy_button", "item_image", "item_name")]
+self_modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+custom_minimum_size = Vector2(150, 106.935)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_w7000")
+script = ExtResource("1_w7000")
+progress_bar = NodePath("ProgressBar")
+expiration_text = NodePath("ProgressBar/ExpirationText")
+background = NodePath(".")
+buy_button = NodePath("ShopButton")
+item_image = NodePath("ItemImage")
+item_name = NodePath("ItemName")
+
+[node name="ShopButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 12
+text = "$44"
+
+[node name="ItemImage" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -31.467499
+offset_right = 20.0
+offset_bottom = 8.532501
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_efq78")
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -42.934998
+offset_bottom = -24.934998
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+show_percentage = false
+
+[node name="ExpirationText" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "expires in 3:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemName" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "Uncommon Pack"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]

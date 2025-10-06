@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=32 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
@@ -19,11 +19,16 @@
 [ext_resource type="Resource" uid="uid://cmmp7dberogj0" path="res://Resources/Rarities/Uncommon.tres" id="14_p1odr"]
 [ext_resource type="Resource" uid="uid://xlgh0dvhswyy" path="res://Resources/Rarities/Rare.tres" id="15_0gysh"]
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="16_vfarp"]
+[ext_resource type="StyleBox" uid="uid://bdqlntek7swwa" path="res://Resources/background_panels.tres" id="18_y6uwr"]
+[ext_resource type="StyleBox" uid="uid://baddjax42guel" path="res://Resources/button_normal.tres" id="20_83xs0"]
 [ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="22_yh6i2"]
 [ext_resource type="Resource" uid="uid://5hvm12aaq5vi" path="res://Resources/Packs/Epic Pack.tres" id="23_nv4vc"]
 [ext_resource type="Script" uid="uid://bf7xw823roc7g" path="res://Scripts/catalog_ui.gd" id="24_2ijsl"]
 [ext_resource type="Resource" uid="uid://c1fmcycn8np82" path="res://Resources/Packs/Rare Pack.tres" id="24_8gxox"]
+[ext_resource type="Script" uid="uid://c8dvf250c0upa" path="res://Scripts/marketplace.gd" id="24_p1odr"]
+[ext_resource type="Script" uid="uid://m7hg010def2v" path="res://Scripts/retail.gd" id="25_0gysh"]
 [ext_resource type="Resource" uid="uid://ptjsv8eo0bwq" path="res://Resources/Packs/Uncommon Pack.tres" id="25_11gg7"]
+[ext_resource type="PackedScene" uid="uid://b4u86jsams1hl" path="res://Scenes/retail_option_ui.tscn" id="26_vfarp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 
@@ -33,6 +38,7 @@
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_v0iea")
+min_angle = -90
 
 [node name="JumpRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07603389, 0)
@@ -242,6 +248,7 @@ offset_right = 395.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_8erm5")
 market_line_prefab = ExtResource("9_f1ek2")
 max_price = 150.0
@@ -372,7 +379,7 @@ offset_bottom = 321.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="ShopUI" type="Panel" parent="Control/UIMenuManager" node_paths=PackedStringArray("offers_container")]
+[node name="ShopUI" type="Panel" parent="Control/UIMenuManager" node_paths=PackedStringArray("marketplace", "retail")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -386,17 +393,18 @@ offset_right = 294.0
 offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("18_y6uwr")
 script = ExtResource("13_ukyrk")
-offers_container = NodePath("GridContainer")
-available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
-new_offer_chance = 0.01
-max_offer_duration = 1440.0
-min_offer_duration = 120.0
+marketplace = NodePath("Marketplace")
+retail = NodePath("Retail")
 
 [node name="ShopText" type="RichTextLabel" parent="Control/UIMenuManager/ShopUI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 217.0
+offset_right = -217.0
 offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 26
@@ -404,7 +412,64 @@ bbcode_enabled = true
 text = "[wave]Shop"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI"]
+[node name="MarketplaceTab" type="Button" parent="Control/UIMenuManager/ShopUI"]
+layout_mode = 0
+offset_left = 52.0
+offset_right = 154.0
+offset_bottom = 29.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("20_83xs0")
+text = "Marketplace"
+
+[node name="RetailTab" type="Button" parent="Control/UIMenuManager/ShopUI"]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 29.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("20_83xs0")
+text = "Retail"
+
+[node name="Marketplace" type="Control" parent="Control/UIMenuManager/ShopUI" node_paths=PackedStringArray("offers_container")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("24_p1odr")
+offers_container = NodePath("GridContainer")
+available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
+max_offer_duration = 600.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI/Marketplace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Retail" type="Control" parent="Control/UIMenuManager/ShopUI" node_paths=PackedStringArray("offers_container")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("25_0gysh")
+retail_offer_scene = ExtResource("26_vfarp")
+offers_container = NodePath("GridContainer")
+available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
+
+[node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI/Retail"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -488,3 +553,5 @@ alignment = 1
 [connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton3" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton3" method="_on_pressed"]
 [connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton4" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton4" method="_on_pressed"]
 [connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton6" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton6" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/ShopUI/MarketplaceTab" to="Control/UIMenuManager/ShopUI" method="_on_marketplace_tab_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/ShopUI/RetailTab" to="Control/UIMenuManager/ShopUI" method="_on_retail_tab_pressed"]

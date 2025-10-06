@@ -46,8 +46,8 @@ func _process(_delta):
 
 	elif Input.is_action_pressed("drop_item"):
 		throw_percentage += _delta * 1.5
-		progress_bar.visible = throw_percentage > 0.2
-		progress_bar.value = (throw_percentage - 0.2) / 0.8 
+		progress_bar.visible = throw_percentage > 0.15
+		progress_bar.value = (throw_percentage - 0.15) / 0.85
 
 	elif Input.is_action_just_released("drop_item"):
 		object_holder.try_drop(throw_percentage * max_throw_force)
