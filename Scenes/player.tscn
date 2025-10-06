@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=41 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
@@ -29,6 +29,15 @@
 [ext_resource type="Script" uid="uid://m7hg010def2v" path="res://Scripts/retail.gd" id="25_0gysh"]
 [ext_resource type="Resource" uid="uid://ptjsv8eo0bwq" path="res://Resources/Packs/Uncommon Pack.tres" id="25_11gg7"]
 [ext_resource type="PackedScene" uid="uid://b4u86jsams1hl" path="res://Scenes/retail_option_ui.tscn" id="26_vfarp"]
+[ext_resource type="Resource" uid="uid://dy0yfv7fdwp2l" path="res://Resources/Cards/Common/Bunny.tres" id="27_8gxox"]
+[ext_resource type="Resource" uid="uid://chxamap2tc3jm" path="res://Resources/Cards/Common/Gopher.tres" id="28_11gg7"]
+[ext_resource type="Resource" uid="uid://b0n2ncgv83eb4" path="res://Resources/Cards/Uncommon/Frog.tres" id="29_qpa8y"]
+[ext_resource type="Resource" uid="uid://30yugsaghgwr" path="res://Resources/Cards/Uncommon/Pigeon.tres" id="30_sbwqj"]
+[ext_resource type="Resource" uid="uid://cd2govrguycup" path="res://Resources/Cards/Rare/Fish.tres" id="31_xwi16"]
+[ext_resource type="Resource" uid="uid://w0dg0oqhckes" path="res://Resources/Cards/Rare/Spider.tres" id="32_sweqm"]
+[ext_resource type="Resource" uid="uid://beqy0qu17eoe1" path="res://Resources/Cards/Epic/Lion.tres" id="33_ph33w"]
+[ext_resource type="Resource" uid="uid://pqmlb605cqmn" path="res://Resources/Cards/Epic/Worm.tres" id="34_11gg7"]
+[ext_resource type="Resource" uid="uid://ci51o0pedeatw" path="res://Resources/storage_box.tres" id="37_qpa8y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
 
@@ -249,6 +258,7 @@ offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = ExtResource("18_y6uwr")
 script = ExtResource("8_8erm5")
 market_line_prefab = ExtResource("9_f1ek2")
 max_price = 150.0
@@ -442,7 +452,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("24_p1odr")
 offers_container = NodePath("GridContainer")
-available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
+available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7"), ExtResource("27_8gxox"), ExtResource("28_11gg7"), ExtResource("29_qpa8y"), ExtResource("30_sbwqj"), ExtResource("31_xwi16"), ExtResource("32_sweqm"), ExtResource("33_ph33w"), ExtResource("34_11gg7")])
 max_offer_duration = 600.0
 
 [node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI/Marketplace"]
@@ -467,7 +477,7 @@ mouse_filter = 2
 script = ExtResource("25_0gysh")
 retail_offer_scene = ExtResource("26_vfarp")
 offers_container = NodePath("GridContainer")
-available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
+available_items = Array[ExtResource("14_0gysh")]([ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7"), ExtResource("37_qpa8y")])
 
 [node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI/Retail"]
 layout_mode = 1
@@ -493,6 +503,7 @@ offset_right = 294.0
 offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_y6uwr")
 script = ExtResource("24_2ijsl")
 
 [node name="CatalogText" type="RichTextLabel" parent="Control/UIMenuManager/CatalogUI"]

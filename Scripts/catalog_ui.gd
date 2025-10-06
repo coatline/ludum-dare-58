@@ -36,6 +36,8 @@ func new_card_type(card: CardType):
 			finished = false
 			break
 	
+	Utils.play_sound_at("NewCard", Vector3.ZERO, 1, false)
+
 	if finished:
 		print("You won!")
 	else:

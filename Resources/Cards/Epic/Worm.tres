@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardType" load_steps=5 format=3 uid="uid://pqmlb605cqmn"]
+
+[ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="1_6h625"]
+[ext_resource type="PackedScene" uid="uid://dv7rsc3ce2imj" path="res://Scenes/card.tscn" id="2_vng5g"]
+[ext_resource type="Script" uid="uid://dsonpbif12sdy" path="res://Scripts/Cards/card_type.gd" id="3_5b1um"]
+[ext_resource type="Texture2D" uid="uid://do1qaxggg3cs4" path="res://Graphics/Cards/Worm_Card.png" id="4_6h625"]
+
+[resource]
+script = ExtResource("3_5b1um")
+rarity = ExtResource("1_6h625")
+texture = ExtResource("4_6h625")
+scene = ExtResource("2_vng5g")
+metadata/_custom_type_script = "uid://dsonpbif12sdy"

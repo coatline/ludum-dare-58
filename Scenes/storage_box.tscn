@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b10ev2826qnx3"]
+
+[ext_resource type="Script" uid="uid://8bj5rxjs3nwx" path="res://Scripts/storage_box.gd" id="1_iq65d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxrlw"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxrlw"]
+albedo_color = Color(0.18701866, 0.06145075, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wrm1d"]
+material = SubResource("StandardMaterial3D_qxrlw")
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="StorageBox" type="RigidBody3D" node_paths=PackedStringArray("rb", "collider")]
+script = ExtResource("1_iq65d")
+rb = NodePath(".")
+collider = NodePath("CollisionShape3D")
+display_name = "Storage Box"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qxrlw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_wrm1d")
+skeleton = NodePath("../..")

@@ -1,2 +1,2 @@
-extends ItemType
+extends EconomyItemType
 class_name CardType

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Sound" load_steps=5 format=3 uid="uid://dowx60r2r40mi"]
+
+[ext_resource type="AudioStream" uid="uid://rvqce0hdt5er" path="res://Audio/Dash.wav" id="1_bydk8"]
+[ext_resource type="AudioStream" uid="uid://di1descq0y4ex" path="res://Audio/Dash2.wav" id="2_cebcm"]
+[ext_resource type="AudioStream" uid="uid://b1b6mbcrwhtl8" path="res://Audio/Dash3.wav" id="3_18nvk"]
+[ext_resource type="Script" uid="uid://du0hi6o2oug7w" path="res://Scripts/sound.gd" id="4_s4esm"]
+
+[resource]
+script = ExtResource("4_s4esm")
+audio_clips = Array[AudioStream]([ExtResource("1_bydk8"), ExtResource("2_cebcm"), ExtResource("3_18nvk")])
+metadata/_custom_type_script = "uid://du0hi6o2oug7w"

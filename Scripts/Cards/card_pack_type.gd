@@ -1,4 +1,4 @@
-extends ItemType
+extends EconomyItemType
 class_name CardPackType
 
 @export var rarity_weights : Dictionary[Rarity, float]
