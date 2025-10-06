@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardPackType" load_steps=8 format=3 uid="uid://c1fmcycn8np82"]
+[gd_resource type="Resource" script_class="CardPackType" load_steps=9 format=3 uid="uid://c1fmcycn8np82"]
 
 [ext_resource type="Resource" uid="uid://b38m7dnsf7ian" path="res://Resources/Rarities/Common.tres" id="1_3p61e"]
 [ext_resource type="Texture2D" uid="uid://bs2x08npo5cog" path="res://Graphics/Packs/Rare_Pack.png" id="1_ol5dc"]
@@ -7,18 +7,21 @@
 [ext_resource type="Resource" uid="uid://xlgh0dvhswyy" path="res://Resources/Rarities/Rare.tres" id="4_csp2j"]
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="5_ym51a"]
 [ext_resource type="Script" uid="uid://crox7156djc78" path="res://Scripts/Cards/card_pack_type.gd" id="6_fathu"]
+[ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/card_pack.tscn" id="7_iw3u6"]
 
 [resource]
 script = ExtResource("6_fathu")
-front_texture = ExtResource("1_ol5dc")
 rarity_weights = Dictionary[ExtResource("2_ol5dc"), float]({
 ExtResource("1_3p61e"): 5.0,
 ExtResource("3_iw3u6"): 5.0,
 ExtResource("4_csp2j"): 14.0,
 ExtResource("5_ym51a"): 80.0
 })
+front_texture = ExtResource("1_ol5dc")
 open_time = 0.1
 card_count = 5
+price = 15.0
 rarity = ExtResource("4_csp2j")
-price = 2.0
+texture = ExtResource("1_ol5dc")
+scene = ExtResource("7_iw3u6")
 metadata/_custom_type_script = "uid://crox7156djc78"

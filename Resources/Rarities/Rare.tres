@@ -8,4 +8,5 @@ color = Color(0, 0.583716, 0.8453846, 1)
 base_price = 20.0
 display_name = "Rare"
 rarity_weight = 5.0
+volitility = 0.7
 metadata/_custom_type_script = "uid://cyoknvg1i1qxq"

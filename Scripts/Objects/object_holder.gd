@@ -11,6 +11,7 @@ func pickup(obj):
 	
 	holdable_object.left_hand.connect(object_gone)
 	holdable_object.destroyed.connect(object_gone)
+	Utils.play_sound_at("PickupObject", global_position)
 
 func object_gone():
 	if holdable_object:
@@ -21,6 +22,7 @@ func object_gone():
 func try_drop(force: float):
 	if holdable_object:
 		holdable_object.drop(-global_transform.basis.z, force)
+		Utils.play_sound_at("ThrowObject", global_position, min(force / 3, 1))
 		#SoundManager.play_sound("DropObject", hand.global_transform.origin)
 
 func try_use(delta: float, started: bool = false, finished: bool = false) -> void:

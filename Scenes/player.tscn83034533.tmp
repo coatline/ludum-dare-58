@@ -1,0 +1,396 @@
+[gd_scene load_steps=29 format=3 uid="uid://rwtxgxevspvg"]
+
+[ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/Player/player_object_holder.gd" id="3_6t5aa"]
+[ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="4_3smsa"]
+[ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/UI/keybinds_label.gd" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/UI/money_text.gd" id="5_x3wgy"]
+[ext_resource type="Script" uid="uid://bqmnb6u1014a7" path="res://Scripts/economy_ui.gd" id="8_8erm5"]
+[ext_resource type="PackedScene" uid="uid://ol2ddlj71lj8" path="res://Scenes/market_line.tscn" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://dersyrxm1qdqq" path="res://Scripts/UI/ui_overlay_manager.gd" id="9_ukyrk"]
+[ext_resource type="Script" uid="uid://r26oy5f82dxr" path="res://Scripts/market_scale_button.gd" id="10_gymyn"]
+[ext_resource type="Script" uid="uid://brhe7jkr5gyem" path="res://Scripts/UI/time_ui.gd" id="10_tx1dd"]
+[ext_resource type="Script" uid="uid://d2rdnkif3aiq4" path="res://Scripts/UI/shop_ui.gd" id="13_ukyrk"]
+[ext_resource type="Script" uid="uid://c2pp0p62t2w7r" path="res://Scripts/item_type.gd" id="14_0gysh"]
+[ext_resource type="PackedScene" uid="uid://b838i3tsnqtqb" path="res://Scenes/shop_option.tscn" id="14_7dp3o"]
+[ext_resource type="Resource" uid="uid://dy0yfv7fdwp2l" path="res://Resources/Cards/Common/Bunny.tres" id="15_vfarp"]
+[ext_resource type="Resource" uid="uid://chxamap2tc3jm" path="res://Resources/Cards/Common/Gopher.tres" id="16_y6uwr"]
+[ext_resource type="Resource" uid="uid://beqy0qu17eoe1" path="res://Resources/Cards/Epic/Lion.tres" id="17_83xs0"]
+[ext_resource type="Resource" uid="uid://cd2govrguycup" path="res://Resources/Cards/Rare/Fish.tres" id="18_ypfnu"]
+[ext_resource type="Resource" uid="uid://w0dg0oqhckes" path="res://Resources/Cards/Rare/Spider.tres" id="19_xuaoq"]
+[ext_resource type="Resource" uid="uid://b0n2ncgv83eb4" path="res://Resources/Cards/Uncommon/Frog.tres" id="20_wohnl"]
+[ext_resource type="Resource" uid="uid://30yugsaghgwr" path="res://Resources/Cards/Uncommon/Pigeon.tres" id="21_36dho"]
+[ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="22_yh6i2"]
+[ext_resource type="Resource" uid="uid://5hvm12aaq5vi" path="res://Resources/Packs/Epic.tres" id="23_nv4vc"]
+[ext_resource type="Resource" uid="uid://c1fmcycn8np82" path="res://Resources/Packs/Rare Pack.tres" id="24_8gxox"]
+[ext_resource type="Resource" uid="uid://ptjsv8eo0bwq" path="res://Resources/Packs/Uncommon Pack.tres" id="25_11gg7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebmjs"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2poj3"]
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_v0iea")
+
+[node name="JumpRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07603389, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ebmjs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_2poj3")
+skeleton = NodePath("../..")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+
+[node name="InteractRaycast" type="RayCast3D" parent="Head/Camera3D" node_paths=PackedStringArray("object_holder", "keybinds_label")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34058595)
+target_position = Vector3(0, 0, -2)
+hit_from_inside = true
+script = ExtResource("2_cvnsp")
+interact_distance = 1.5
+object_holder = NodePath("../../Hand")
+keybinds_label = NodePath("../../../Control/Keybinds")
+
+[node name="Hand" type="Node3D" parent="Head" node_paths=PackedStringArray("progress_bar", "keybinds_label", "object_holder", "hand")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5263136, -0.2879461, -0.7328373)
+script = ExtResource("3_6t5aa")
+progress_bar = NodePath("../../Control/ThrowProgressBar")
+keybinds_label = NodePath("../../Control/Keybinds")
+object_holder = NodePath(".")
+hand = NodePath(".")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_3smsa")
+
+[node name="Keybinds" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -335.0
+offset_right = 401.0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+vertical_alignment = 2
+script = ExtResource("4_fkybt")
+
+[node name="Money" type="RichTextLabel" parent="Control"]
+modulate = Color(0, 1, 0.116666794, 1)
+layout_mode = 0
+offset_right = 183.0
+offset_bottom = 37.0
+theme_override_font_sizes/normal_font_size = 24
+text = "$0"
+scroll_active = false
+script = ExtResource("5_x3wgy")
+
+[node name="CenterIndicator3" type="TextureRect" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 1
+
+[node name="CenterIndicator" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vgqql")
+expand_mode = 1
+
+[node name="ThrowProgressBar" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -7.5
+offset_right = 26.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Control/ThrowProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Force"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme = ExtResource("4_3smsa")
+text = "1:00"
+horizontal_alignment = 2
+script = ExtResource("10_tx1dd")
+
+[node name="Market" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "'F' Stocks"
+
+[node name="Buy" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -78.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "'C' Shop"
+
+[node name="OverlayManager" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_ukyrk")
+
+[node name="MarketUI" type="Panel" parent="Control/OverlayManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 262.0
+offset_top = 42.0
+offset_right = 850.0
+offset_bottom = 566.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_8erm5")
+market_line_prefab = ExtResource("9_f1ek2")
+max_price = 150.0
+
+[node name="VerticalUnits" type="Control" parent="Control/OverlayManager/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HorizontalUnits" type="Control" parent="Control/OverlayManager/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GraphPanel" type="Panel" parent="Control/OverlayManager/MarketUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 212.0
+offset_right = -35.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeScale" type="Label" parent="Control/OverlayManager/MarketUI/GraphPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -1.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "day"
+horizontal_alignment = 2
+
+[node name="ScaleButtons" type="HBoxContainer" parent="Control/OverlayManager/MarketUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 105.0
+offset_top = 163.0
+offset_right = -104.0
+offset_bottom = 202.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ScaleButton" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1H"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+line_width = 6.0
+
+[node name="ScaleButton5" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "6H"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 360.0
+
+[node name="ScaleButton2" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1D"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 1440.0
+line_width = 4.0
+
+[node name="ScaleButton3" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "7D"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 10080.0
+line_width = 3.5
+
+[node name="ScaleButton4" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1M"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 43200.0
+line_width = 2.5
+
+[node name="ScaleButton6" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1Y"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../..")
+display_time = 525600.0
+line_width = 2.0
+
+[node name="MarketTexts" type="VBoxContainer" parent="Control/OverlayManager/MarketUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_right = 210.0
+offset_bottom = 144.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ShopUI" type="Panel" parent="Control/OverlayManager" node_paths=PackedStringArray("offers_container")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 262.0
+offset_top = 42.0
+offset_right = 850.0
+offset_bottom = 566.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_ukyrk")
+offers_container = NodePath("GridContainer")
+available_items = Array[ExtResource("14_0gysh")]([ExtResource("15_vfarp"), ExtResource("16_y6uwr"), ExtResource("17_83xs0"), ExtResource("18_ypfnu"), ExtResource("19_xuaoq"), ExtResource("20_wohnl"), ExtResource("21_36dho"), ExtResource("22_yh6i2"), ExtResource("23_nv4vc"), ExtResource("24_8gxox"), ExtResource("25_11gg7")])
+
+[node name="ShopText" type="RichTextLabel" parent="Control/OverlayManager/ShopUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[wave]Shop"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control/OverlayManager/ShopUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopOption" parent="Control/OverlayManager/ShopUI/GridContainer" instance=ExtResource("14_7dp3o")]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton5" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton5" method="_on_pressed"]
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton2" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton2" method="_on_pressed"]
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton3" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton3" method="_on_pressed"]
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton4" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton4" method="_on_pressed"]
+[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton6" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton6" method="_on_pressed"]

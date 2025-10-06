@@ -1,4 +1,5 @@
 extends HoldableObject
+class_name CardPack
 
 const CARD: PackedScene = preload("uid://dv7rsc3ce2imj")
 

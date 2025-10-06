@@ -1,6 +1,6 @@
 extends Node
 
-const TICKS_PER_GAME_MINUTE: int = 8
+const TICKS_PER_GAME_MINUTE: int = 4
 
 signal tick_simulated(ticks: int)
 signal economy_updated
@@ -12,7 +12,7 @@ var last_simulated_time: int = 0
 func _ready() -> void:
 	var rarities = ResourceManager.get_resources(Rarity)
 	for rarity in rarities:
-		markets[rarity] = Market.new(rarity.base_price, 0.2, 0.00001)
+		markets[rarity] = Market.new(rarity.base_price, rarity.volitility, 0.000001)
 
 func _process(delta: float) -> void:
 	var updated: bool = false

@@ -6,6 +6,7 @@ func interact(interactor: PlayerInteractor):
 	
 	MoneyManager.modify_funds(Economy.get_market_price(type.rarity))
 	interactor.object_holder.holdable_object.queue_free()
+	Utils.play_sound_at("Sell", Vector2.ZERO, 1, false)
 
 func can_interact(interactor: PlayerInteractor) -> bool:
 	if interactor.object_holder.has_item():

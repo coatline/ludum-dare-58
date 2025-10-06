@@ -5,3 +5,4 @@ class_name Rarity
 @export var base_price: float
 @export var display_name: String
 @export var rarity_weight: float
+@export var volitility: float

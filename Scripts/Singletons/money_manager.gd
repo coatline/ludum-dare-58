@@ -1,6 +1,7 @@
 extends Node
 
 signal money_changed(delta_money: float)
+signal bought_item(item: ItemType)
 
 var money: float = 0
 

@@ -33,6 +33,11 @@ func _process(_delta):
 
 	elif Input.is_action_just_released("use_item"):
 		object_holder.try_use(_delta, false, true)
+	
+	elif holdable_object == null:
+		if throw_percentage > 0:
+			finish_dropping()
+		return
 
 	elif Input.is_action_pressed("drop_item"):
 		throw_percentage += _delta

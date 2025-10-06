@@ -8,4 +8,5 @@ color = Color(1, 0, 0, 1)
 base_price = 100.0
 display_name = "Epic"
 rarity_weight = 10.0
+volitility = 1.2
 metadata/_custom_type_script = "uid://cyoknvg1i1qxq"

@@ -1,6 +1,16 @@
-[gd_scene format=3 uid="uid://c5qca7515lm7e"]
+[gd_scene load_steps=2 format=3 uid="uid://c5qca7515lm7e"]
 
-[node name="MarketPriceText" type="Label"]
-offset_right = 40.0
+[ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="1_7t5cs"]
+
+[node name="MarketPriceText" type="RichTextLabel"]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 31.0
+grow_horizontal = 2
+theme = ExtResource("1_7t5cs")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "asdfasdfsdf"
+scroll_active = false
 horizontal_alignment = 1

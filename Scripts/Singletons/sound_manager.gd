@@ -37,7 +37,7 @@ func _add_to_pool_non_spatial() -> AudioStreamPlayer:
 	pool_non_spatial.append(player)
 	return player
 
-func _get_player_from_pool(pool: Array, add_func: Callable) -> AudioStreamPlayer:
+func _get_player_from_pool(pool: Array, add_func: Callable):
 	for player in pool:
 		if not player.playing:
 			return player
@@ -47,7 +47,7 @@ func _get_player_from_pool(pool: Array, add_func: Callable) -> AudioStreamPlayer
 func _return_to_pool(player: AudioStreamPlayer, pool: Array):
 	player.stream = null
 
-func PlaySound(stream: AudioStream, position = null, volume: float = DEFAULT_VOLUME, spatial: bool = false):
+func PlaySound(stream: AudioStream, position = null, volume: float = DEFAULT_VOLUME, spatial: bool = true):
 	if stream == null:
 		return
 

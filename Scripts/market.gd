@@ -33,9 +33,7 @@ func update_price(delta: float):
 	current_price += random_change + recovery_change
 	current_price = max(current_price, 0.01)
 
-func get_graph(target_past_minutes: float, x_scale: float, y_scale: float, max_price: float) -> PackedVector2Array:
-	var graph: PackedVector2Array = []
-	
+func get_market_history(target_past_minutes: float) -> MarketHistory:
 	var history_scale = 0
 	var history: MarketHistory = histories[history_scale]
 	
@@ -46,6 +44,11 @@ func get_graph(target_past_minutes: float, x_scale: float, y_scale: float, max_p
 			break
 		
 		history = histories[history_scale]
+	
+	return history
+
+func get_graph(target_past_minutes: float, history: MarketHistory, x_scale: float, y_scale: float, max_price: float) -> PackedVector2Array:
+	var graph: PackedVector2Array = []
 	
 	var max_ticks = (target_past_minutes / history.record_interval_ticks) * Economy.TICKS_PER_GAME_MINUTE
 	var starting_index = clamp(len(history.ticks) - max_ticks, 0, len(history.ticks))
