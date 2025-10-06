@@ -1,7 +1,6 @@
 extends HoldableObject
 class_name CardObject
 
-@onready var mesh_instance_3d: MeshInstance3D = $CollisionShape3D/MeshInstance3D
 @onready var face: MeshInstance3D = $CollisionShape3D/Face
 @onready var face_2: MeshInstance3D = $CollisionShape3D/Face2
 var card_type: CardType 

@@ -16,7 +16,7 @@ func _ready():
 func _add_to_pool_2d() -> AudioStreamPlayer2D:
 	var player = AudioStreamPlayer2D.new()
 	player.bus = "SFX"
-	player.finished.connect(_return_to_pool.bind(player, pool_2d))
+	player.finished.connect(func(): _return_to_pool.bind(player, pool_2d))
 	add_child(player)
 	pool_2d.append(player)
 	return player
@@ -24,7 +24,7 @@ func _add_to_pool_2d() -> AudioStreamPlayer2D:
 func _add_to_pool_3d() -> AudioStreamPlayer3D:
 	var player = AudioStreamPlayer3D.new()
 	player.bus = "SFX"
-	player.finished.connect(_return_to_pool.bind(player, pool_3d))
+	player.finished.connect(func(): _return_to_pool.bind(player, pool_3d))
 	add_child(player)
 	pool_3d.append(player)
 	return player
@@ -32,7 +32,7 @@ func _add_to_pool_3d() -> AudioStreamPlayer3D:
 func _add_to_pool_non_spatial() -> AudioStreamPlayer:
 	var player = AudioStreamPlayer.new()
 	player.bus = "SFX"
-	player.finished.connect(_return_to_pool.bind(player, pool_non_spatial))
+	player.finished.connect(func(): _return_to_pool.bind(player, pool_non_spatial))
 	add_child(player)
 	pool_non_spatial.append(player)
 	return player

@@ -63,19 +63,21 @@ func update_graph() -> void:
 
 			after_text = "%.0f%%" % [delta * 100.0]
 			if delta > 0:
-				after_text = " [color=green]+" + after_text
+				after_text = " [color=green]+" + after_text + "[/color]"
 			elif delta < 0:
-				after_text = " [color=red]" + after_text
-		
+				after_text = " [color=red]" + after_text + "[/color]"
+			else:
+				after_text = " +0%"
+
 		if market.current_price > 10.0:
-			price_text.text = "[color=%s]%s: $%.0f [/color]%s[/color]" % [
+			price_text.text = "[color=%s]%s: $%.0f [/color]%s" % [
 				rarity.color.to_html(false),
 				rarity.display_name,
 				market.current_price,
 				after_text
 			]
 		else:
-			price_text.text = "[color=%s]%s: $%.2f [/color]%s[/color]" % [
+			price_text.text = "[color=%s]%s: $%.2f [/color]%s" % [
 				rarity.color.to_html(false),
 				rarity.display_name,
 				market.current_price,
