@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://db4sxar4lhac1"]
+[gd_scene load_steps=36 format=3 uid="uid://db4sxar4lhac1"]
 
 [ext_resource type="PackedScene" uid="uid://rwtxgxevspvg" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Material" uid="uid://fhqebad1dayb" path="res://Materials/floor_material.tres" id="2_1l0tm"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://cd8q6trpw52qa" path="res://Scripts/Tools/editor_visibility.gd" id="6_i6g32"]
 [ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="6_ldgsr"]
 [ext_resource type="Material" uid="uid://bvqgky7y6nesi" path="res://Materials/door_material.tres" id="7_h4fw4"]
-[ext_resource type="Material" uid="uid://dnj08t5lq2ukj" path="res://Materials/light_material.tres" id="8_v158k"]
+[ext_resource type="PackedScene" uid="uid://d2tx2nr25s1am" path="res://Scenes/light_bulb.tscn" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://i5ewtmb3bog0" path="res://Scripts/delivery_spot.gd" id="11_o5yvi"]
+[ext_resource type="Script" uid="uid://chlk8ny8bwr6t" path="res://Scripts/lamp.gd" id="11_rku1e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ebmjs"]
 size = Vector3(20, 0.5, 20)
@@ -48,7 +49,7 @@ adjustment_saturation = 2.0
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxrlw"]
-albedo_color = Color(0.9999998, 0.1873051, 0.1991657, 1)
+albedo_color = Color(0.18701866, 0.06145075, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrm1d"]
 material = SubResource("StandardMaterial3D_qxrlw")
@@ -61,6 +62,7 @@ radius = 0.473
 radius = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qqmn"]
+albedo_color = Color(0.25644904, 0.13634667, 0.4367386, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ldgsr"]
 size = Vector3(0.09, 2.414, 1.494)
@@ -83,10 +85,12 @@ size = Vector3(25, 0.25, 25)
 [sub_resource type="BoxMesh" id="BoxMesh_1l0tm"]
 size = Vector3(25, 0.25, 25)
 
-[sub_resource type="SphereMesh" id="SphereMesh_1l0tm"]
-material = ExtResource("8_v158k")
-radius = 0.25
-height = 0.5
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5yvi"]
+size = Vector3(0.13378906, 1.9482422, 0.203125)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rku1e"]
+material = SubResource("StandardMaterial3D_qxrlw")
+size = Vector3(0.15, 2, 0.15)
 
 [node name="Game" type="Node3D"]
 
@@ -232,6 +236,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1917818, 0)
 shape = SubResource("BoxShape3D_wowpa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall4/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0517578e-05, 0, -3.2424927e-05)
 mesh = SubResource("BoxMesh_i6g32")
 
 [node name="Wall5" type="StaticBody3D" parent="House"]
@@ -366,14 +371,22 @@ shape = SubResource("BoxShape3D_wowpa")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="House/Wall16/CollisionShape3D"]
 mesh = SubResource("BoxMesh_i6g32")
 
-[node name="Light" type="MeshInstance3D" parent="."]
+[node name="CeilingLight" parent="." instance=ExtResource("10_o5yvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.599972, 0)
-mesh = SubResource("SphereMesh_1l0tm")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
-light_color = Color(1, 1, 0.827451, 1)
-light_energy = 4.0
-omni_range = 15.0
+[node name="Lamp" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8667564, 0.9540117, -0.5337434)
+script = ExtResource("11_rku1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lamp"]
+shape = SubResource("BoxShape3D_o5yvi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lamp/CollisionShape3D"]
+mesh = SubResource("BoxMesh_rku1e")
+skeleton = NodePath("../..")
+
+[node name="LightBulb" parent="Lamp" instance=ExtResource("10_o5yvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0690327, 0)
 
 [node name="DeliverySpot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35275912, 2.1679835, -0.62427354)

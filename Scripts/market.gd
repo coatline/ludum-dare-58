@@ -56,43 +56,6 @@ func update_price(delta: float):
 	# keep within min/max bounds
 	current_price = current_price
 
-
-# func update_price(delta: float):
-# 	var recovery_up = randf()
-# 	var recovery_down = randf()
-	
-# 	if current_price < base_price:
-# 		recovery_up = 1 - min((current_price - min_price) / max((base_price - min_price), 0.01), 1)
-# 	elif current_price > base_price:
-# 		recovery_down = 1 - min((max_price - current_price) / max(max_price - base_price, 0.01), 1)
-	
-# 	var deccelerate_up = randf()
-# 	var decceleration_down = randf()
-# 	var max_acceleration = 5.0
-
-# 	if trend < 0:
-# 		deccelerate_up = 1 - trend / max_acceleration
-# 	elif trend > 0:
-# 		decceleration_down = 1 - -trend / max_acceleration
-	
-# 	var trend_up = randf()
-# 	var trend_down = randf()
-
-# 	if trend < 0:
-# 		trend_down = 1
-# 	elif trend > 0:
-# 		trend_up = 1
-
-# 	var random_factor = randf_range(randf(), randf())
-# 	var momentum_factor = randf_range(-trend_down, trend_up)
-# 	var trend_decceleration_factor = randf_range(-decceleration_down, deccelerate_up)
-# 	var trend_delta = randf_range(-recovery_down, recovery_up) * 0.2 + trend_decceleration_factor * 0.3 + momentum_factor * 0.3 + random_factor * 0.4
-# 	# var volatility_factor = randf_range(-volatility, volatility) * (1 + randf())
-
-# 	trend += trend_delta * delta
-# 	current_price += (trend + trend_decceleration_factor) * delta * 0.1
-# 	current_price = max(current_price, 0.01)
-
 func get_market_history(target_past_minutes: float) -> MarketHistory:
 	var history_scale = 0
 	var history: MarketHistory = histories[history_scale]

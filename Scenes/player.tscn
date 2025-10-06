@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://rwtxgxevspvg"]
+[gd_scene load_steps=27 format=3 uid="uid://rwtxgxevspvg"]
 
 [ext_resource type="Script" uid="uid://buaoiclqane4o" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b6dsfn8iylghq" path="res://Scripts/Player/player_interact.gd" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://78qwmfmsm0p1" path="res://Scripts/Player/player_object_holder.gd" id="3_6t5aa"]
 [ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="4_3smsa"]
 [ext_resource type="Script" uid="uid://j01plcdknngv" path="res://Scripts/UI/keybinds_label.gd" id="4_fkybt"]
-[ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/Circle.png" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://dlgciw171lb30" path="res://Graphics/UI/Circle.png" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://du7njf8ybpsk" path="res://Scripts/UI/money_text.gd" id="5_x3wgy"]
 [ext_resource type="Script" uid="uid://lh4ifaa1s0qh" path="res://Scripts/UI/economy_ui.gd" id="8_8erm5"]
 [ext_resource type="PackedScene" uid="uid://ol2ddlj71lj8" path="res://Scenes/market_line.tscn" id="9_f1ek2"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="16_vfarp"]
 [ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="22_yh6i2"]
 [ext_resource type="Resource" uid="uid://5hvm12aaq5vi" path="res://Resources/Packs/Epic Pack.tres" id="23_nv4vc"]
+[ext_resource type="Script" uid="uid://bf7xw823roc7g" path="res://Scripts/catalog_ui.gd" id="24_2ijsl"]
 [ext_resource type="Resource" uid="uid://c1fmcycn8np82" path="res://Resources/Packs/Rare Pack.tres" id="24_8gxox"]
 [ext_resource type="Resource" uid="uid://ptjsv8eo0bwq" path="res://Resources/Packs/Uncommon Pack.tres" id="25_11gg7"]
 
@@ -56,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34058595)
 target_position = Vector3(0, 0, -2)
 hit_from_inside = true
 script = ExtResource("2_cvnsp")
-interact_distance = 1.5
+interact_distance = 1.75
 object_holder = NodePath("../../Hand")
 keybinds_label = NodePath("../../../Control/Keybinds")
 
@@ -184,7 +185,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -125.0
-offset_top = -39.0
+offset_top = -78.0
+offset_bottom = -39.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "'F' Stocks"
@@ -197,13 +199,26 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -106.0
-offset_top = -78.0
-offset_bottom = -39.0
+offset_top = -117.0
+offset_bottom = -78.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "'C' Shop"
 
-[node name="OverlayManager" type="Control" parent="Control"]
+[node name="Catalog" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -156.0
+offset_top = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "'Tab' Catalog"
+
+[node name="UIMenuManager" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,7 +227,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_ukyrk")
 
-[node name="MarketUI" type="Panel" parent="Control/OverlayManager"]
+[node name="MarketUI" type="Panel" parent="Control/UIMenuManager"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -220,10 +235,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -294.0
-offset_top = -262.0
-offset_right = 294.0
-offset_bottom = 262.0
+offset_left = -419.0
+offset_top = -186.0
+offset_right = 395.0
+offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_8erm5")
@@ -231,29 +246,104 @@ market_line_prefab = ExtResource("9_f1ek2")
 max_price = 150.0
 rarities = Array[ExtResource("12_bi64h")]([ExtResource("16_vfarp"), ExtResource("15_0gysh"), ExtResource("14_p1odr"), ExtResource("13_2ijsl")])
 
-[node name="VerticalUnits" type="Control" parent="Control/OverlayManager/MarketUI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HorizontalUnits" type="Control" parent="Control/OverlayManager/MarketUI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="GraphPanel" type="Panel" parent="Control/OverlayManager/MarketUI"]
+[node name="CatalogText" type="RichTextLabel" parent="Control/UIMenuManager/MarketUI"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+offset_right = 479.0
+offset_bottom = 40.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[wave]Market"
+horizontal_alignment = 1
+
+[node name="VerticalUnits" type="Control" parent="Control/UIMenuManager/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HorizontalUnits" type="Control" parent="Control/UIMenuManager/MarketUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GraphPanel" type="Panel" parent="Control/UIMenuManager/MarketUI"]
+layout_mode = 1
+anchors_preset = -1
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 212.0
-offset_right = -35.0
-offset_bottom = -39.0
+offset_left = 37.0
+offset_top = 70.0
+offset_right = 479.0
+offset_bottom = -31.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeScale" type="Label" parent="Control/OverlayManager/MarketUI/GraphPanel"]
+[node name="ScaleButtons" type="HBoxContainer" parent="Control/UIMenuManager/MarketUI/GraphPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -40.0
+offset_bottom = -1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ScaleButton" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1h"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+line_width = 6.0
+
+[node name="ScaleButton5" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "6h"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+display_time = 360.0
+
+[node name="ScaleButton2" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1d"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+display_time = 1440.0
+line_width = 4.0
+
+[node name="ScaleButton3" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "7d"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+display_time = 10080.0
+line_width = 3.5
+
+[node name="ScaleButton4" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1m"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+display_time = 43200.0
+line_width = 2.5
+
+[node name="ScaleButton6" type="Button" parent="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+text = "1y"
+script = ExtResource("10_gymyn")
+marketUI = NodePath("../../..")
+display_time = 525600.0
+line_width = 2.0
+
+[node name="TimeScale" type="Label" parent="Control/UIMenuManager/MarketUI/GraphPanel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -266,90 +356,22 @@ offset_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 16
-text = "day"
+text = "1h"
 horizontal_alignment = 2
 
-[node name="ScaleButtons" type="HBoxContainer" parent="Control/OverlayManager/MarketUI"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 105.0
-offset_top = 163.0
-offset_right = -104.0
-offset_bottom = 202.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="ScaleButton" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "1H"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-line_width = 6.0
-
-[node name="ScaleButton5" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "6H"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-display_time = 360.0
-
-[node name="ScaleButton2" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "1D"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-display_time = 1440.0
-line_width = 4.0
-
-[node name="ScaleButton3" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "7D"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-display_time = 10080.0
-line_width = 3.5
-
-[node name="ScaleButton4" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "1M"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-display_time = 43200.0
-line_width = 2.5
-
-[node name="ScaleButton6" type="Button" parent="Control/OverlayManager/MarketUI/ScaleButtons" node_paths=PackedStringArray("marketUI")]
-layout_mode = 2
-focus_mode = 0
-action_mode = 0
-text = "1Y"
-script = ExtResource("10_gymyn")
-marketUI = NodePath("../..")
-display_time = 525600.0
-line_width = 2.0
-
-[node name="MarketTexts" type="VBoxContainer" parent="Control/OverlayManager/MarketUI"]
+[node name="MarketTexts" type="VBoxContainer" parent="Control/UIMenuManager/MarketUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -210.0
-offset_right = 210.0
-offset_bottom = 144.0
+offset_left = 86.0
+offset_top = 74.0
+offset_right = 373.0
+offset_bottom = 321.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="ShopUI" type="Panel" parent="Control/OverlayManager" node_paths=PackedStringArray("offers_container")]
+[node name="ShopUI" type="Panel" parent="Control/UIMenuManager" node_paths=PackedStringArray("offers_container")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -370,7 +392,7 @@ new_offer_chance = 0.01
 max_offer_duration = 1440.0
 min_offer_duration = 120.0
 
-[node name="ShopText" type="RichTextLabel" parent="Control/OverlayManager/ShopUI"]
+[node name="ShopText" type="RichTextLabel" parent="Control/UIMenuManager/ShopUI"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -381,7 +403,7 @@ bbcode_enabled = true
 text = "[wave]Shop"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Control/OverlayManager/ShopUI"]
+[node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/ShopUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -391,9 +413,77 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton" method="_on_pressed"]
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton5" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton5" method="_on_pressed"]
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton2" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton2" method="_on_pressed"]
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton3" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton3" method="_on_pressed"]
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton4" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton4" method="_on_pressed"]
-[connection signal="pressed" from="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton6" to="Control/OverlayManager/MarketUI/ScaleButtons/ScaleButton6" method="_on_pressed"]
+[node name="CatalogUI" type="Panel" parent="Control/UIMenuManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -155.0
+offset_right = 294.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_2ijsl")
+
+[node name="CatalogText" type="RichTextLabel" parent="Control/UIMenuManager/CatalogUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[wave]Catalog"
+horizontal_alignment = 1
+
+[node name="CompletionText" type="RichTextLabel" parent="Control/UIMenuManager/CatalogUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[pulse]0%"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/UIMenuManager/CatalogUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 43.0
+offset_right = -39.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/UIMenuManager/CatalogUI/CenterContainer"]
+layout_mode = 2
+columns = 10
+
+[node name="NewCardNotificationHolder" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 95.0
+grow_horizontal = 2
+alignment = 1
+
+[connection signal="pressed" from="Control/Stocks" to="Control/UIMenuManager" method="_on_stocks_pressed"]
+[connection signal="pressed" from="Control/Shop" to="Control/UIMenuManager" method="_on_shop_pressed"]
+[connection signal="pressed" from="Control/Catalog" to="Control/UIMenuManager" method="_on_catalog_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton5" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton5" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton2" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton2" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton3" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton3" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton4" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton4" method="_on_pressed"]
+[connection signal="pressed" from="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton6" to="Control/UIMenuManager/MarketUI/GraphPanel/ScaleButtons/ScaleButton6" method="_on_pressed"]

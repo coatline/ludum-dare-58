@@ -1,5 +1,5 @@
 extends UIOverlay
-class_name ShopManager
+class_name ShopUI
 
 const SHOP_OPTION = preload("uid://b838i3tsnqtqb")
 const MAX_OFFERS = 6

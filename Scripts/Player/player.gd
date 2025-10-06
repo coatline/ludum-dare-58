@@ -10,7 +10,6 @@ extends RigidBody3D
 @export var min_angle = -80
 @export var max_angle = 90
 
-@onready var overlay_manager: UIOverlayManager = $Control/OverlayManager
 @onready var jump_raycast: RayCast3D = $JumpRaycast
 @onready var collision_shape = $CollisionShape3D
 @onready var hand: Node3D = $Head/Hand

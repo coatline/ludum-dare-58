@@ -45,7 +45,7 @@ func _ready() -> void:
 		price_texts[rarity] = text_instance
 	
 	Economy.economy_updated.connect(update_graph)
-	set_display_time(display_time, "1H")
+	set_display_time(display_time, "1h")
 	disable()
 
 func update_graph() -> void:

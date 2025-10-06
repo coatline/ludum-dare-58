@@ -12,6 +12,11 @@ func pickup(obj):
 	keybinds_label.show_keybind(Utils.get_verb_item_string("Throw ", holdable_object), "drop_item")
 	if holdable_object.useable():
 		keybinds_label.show_keybind(holdable_object.use_text(), "use_item")
+	
+	var card = obj as CardObject
+	
+	if card:
+		CatalogManager.add_card(card.card_type)
 
 func object_gone():
 	keybinds_label.hide_keybind("drop_item")

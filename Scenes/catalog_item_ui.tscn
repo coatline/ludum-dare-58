@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwlc5dx0tjisa"]
+
+[ext_resource type="Script" uid="uid://di5q6ngudvynv" path="res://Scripts/catalog_item_ui.gd" id="1_v7ph0"]
+[ext_resource type="Texture2D" uid="uid://dpndthvogsv8u" path="res://Graphics/Cards/Frog_Card.png" id="2_ryr4h"]
+[ext_resource type="Texture2D" uid="uid://deryh5g220smb" path="res://Graphics/UI/XMark.png" id="3_ughah"]
+
+[node name="CatalogItem" type="Panel"]
+custom_minimum_size = Vector2(60, 80)
+offset_right = 60.0
+offset_bottom = 75.0
+script = ExtResource("1_v7ph0")
+
+[node name="ItemName" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "Frog"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="."]
+self_modulate = Color(0.21590188, 0.21590167, 0.21590179, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -57.464996
+offset_right = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_ryr4h")
+stretch_mode = 5
+
+[node name="Status" type="TextureRect" parent="Image"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 9.577499
+offset_right = -6.0
+offset_bottom = -9.577499
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ughah")
+stretch_mode = 5

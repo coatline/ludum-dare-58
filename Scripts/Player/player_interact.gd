@@ -13,7 +13,14 @@ func _physics_process(delta):
 	
 	if is_colliding():
 		var collider = get_collider()
-		var interactable: Interactable = collider as Interactable
+		var interactable: Interactable = null
+	
+		while collider:
+			interactable = collider as Interactable
+			if interactable:
+				break
+			collider = collider.get_parent()
+		
 		if interactable:
 			if interactable.can_interact(self):
 				if hovered_object != interactable:

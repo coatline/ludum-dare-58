@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2tx2nr25s1am"]
+
+[ext_resource type="Material" uid="uid://dnj08t5lq2ukj" path="res://Materials/light_material.tres" id="1_xtwnn"]
+[ext_resource type="Script" uid="uid://bf417rw22ci26" path="res://Scenes/light.gd" id="2_qd5jm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m47p8"]
+radius = 0.24775141
+
+[sub_resource type="SphereMesh" id="SphereMesh_1l0tm"]
+material = ExtResource("1_xtwnn")
+radius = 0.25
+height = 0.5
+
+[node name="LightBulb" type="StaticBody3D"]
+script = ExtResource("2_qd5jm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.99928266, 0.99999994, 0.95337206, 1)
+light_energy = 4.0
+omni_range = 18.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_m47p8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_1l0tm")
+skeleton = NodePath("../..")
