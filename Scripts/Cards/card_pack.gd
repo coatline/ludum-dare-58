@@ -47,6 +47,7 @@ func open():
 		card_instance.global_transform.origin = global_transform.origin
 		card_instance.set_card_type(card)
 	
+	Utils.play_sound_at("OpenPack", global_position)
 	queue_free()
 
 func useable() -> bool: return true

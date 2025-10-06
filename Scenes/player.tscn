@@ -67,6 +67,7 @@ script = ExtResource("3_6t5aa")
 progress_bar = NodePath("../../Control/ThrowProgressBar")
 keybinds_label = NodePath("../../Control/Keybinds")
 object_holder = NodePath(".")
+max_throw_force = 15.0
 hand = NodePath(".")
 
 [node name="Control" type="Control" parent="."]

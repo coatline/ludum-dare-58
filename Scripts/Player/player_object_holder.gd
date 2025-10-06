@@ -45,7 +45,7 @@ func _process(_delta):
 		return
 
 	elif Input.is_action_pressed("drop_item"):
-		throw_percentage += _delta
+		throw_percentage += _delta * 1.5
 		progress_bar.visible = throw_percentage > 0.2
 		progress_bar.value = (throw_percentage - 0.2) / 0.8 
 

@@ -20,6 +20,7 @@ var stand_height: float
 var look_rot: Vector2
 
 func _ready():
+	look_rot.y = rotation_degrees.y
 	stand_height = collision_shape.shape.height
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

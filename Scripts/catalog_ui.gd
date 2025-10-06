@@ -32,7 +32,7 @@ func new_card_type(card: CardType):
 	
 	var cards = ResourceManager.get_resources(CardType)
 	for c in cards:
-		if CatalogManager.has_card(card) == false:
+		if CatalogManager.has_card(c) == false:
 			finished = false
 			break
 	

@@ -37,9 +37,10 @@ func leave_hand():
 	left_hand.emit()
 
 func hold(pos: Vector3, rot: Vector3):
-	being_held = true
+	rb.linear_velocity = Vector3.ZERO
 	global_transform.origin = pos
 	rotation_degrees = rot
+	being_held = true
 
 func interact(interactor):
 	interactor.object_holder.pickup(self)

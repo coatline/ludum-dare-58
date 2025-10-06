@@ -5,8 +5,8 @@ class_name NewCardNotificationUI
 @onready var card_image: TextureRect = $CardImage
 
 var lifetime = 0.0
-var slide_time = 0.5
-var pause_time = 1.0
+var slide_time = 0.35
+var pause_time = 5
 
 func set_card(card: CardType):
 	card_name.text = card.display_name()
