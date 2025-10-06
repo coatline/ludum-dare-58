@@ -10,9 +10,9 @@ func deliver(item: ItemType):
 	
 	var card = instance as CardObject
 	
-	if card:
-		card.set_card_type(item as CardType)
-		return
+	#if card:
+		#card.set_card_type(item as CardType)
+		#return
 	
 	var card_pack = instance as CardPack
 	

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemType" load_steps=4 format=3 uid="uid://ci51o0pedeatw"]
 
-[ext_resource type="PackedScene" uid="uid://b10ev2826qnx3" path="res://Scenes/storage_box.tscn" id="1_hrdti"]
+[ext_resource type="PackedScene" uid="uid://b10ev2826qnx3" path="res://Scenes/Items/storage_box.tscn" id="1_hrdti"]
 [ext_resource type="Script" uid="uid://c2pp0p62t2w7r" path="res://Scripts/item_type.gd" id="1_py350"]
 [ext_resource type="Texture2D" uid="uid://bg2g27c8ppwv1" path="res://Graphics/UI/StorageBox.png" id="2_efufe"]
 

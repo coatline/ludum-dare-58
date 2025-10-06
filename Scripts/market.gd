@@ -3,12 +3,7 @@ class_name Market
 var base_price: float
 var volatility: float
 var current_price: float
-var recovery_speed: float
 var trend: float = 0.0
-var max_price: float = 1000.0
-var min_price: float = 0.01
-var noise = FastNoiseLite.new()
-var noise_offset = randi()
 
 var histories = [
 	# 1 Hour
@@ -24,19 +19,12 @@ var histories = [
 func _init(_base_price: float = 50.0, _volatility: float = 1, _recovery_speed: float = 0.000001):
 	base_price = _base_price
 	volatility = _volatility
-	recovery_speed = _recovery_speed
 	current_price = base_price
-	max_price = base_price * 1.25
-	min_price = base_price * 0.75
-	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
-	noise.seed = randi()
 
 func update_price(delta: float):
-	var recovery_speed = 0.2
 	var randomness = 0.05
 	var trend_inertia = 0.99  # how much trend “sticks”
 	var correction_strength = 0.01  # pull toward base price
-	var volatility = 0.02  # how jumpy it is
 
 	# random drift like daily ups/downs
 	var random_drift = randf_range(-randomness, randomness)
@@ -45,7 +33,7 @@ func update_price(delta: float):
 	var correction = ((base_price - current_price) / base_price) * correction_strength
 
 	# gradual trend change (momentum + random noise)
-	trend = trend * trend_inertia + random_drift + correction
+	trend = (trend * trend_inertia) + random_drift + correction
 
 	# apply volatility and clamp trend a bit
 	trend = clamp(trend, -0.5, 0.5)

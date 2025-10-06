@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://xlgh0dvhswyy" path="res://Resources/Rarities/Rare.tres" id="4_csp2j"]
 [ext_resource type="Resource" uid="uid://cosqs75ei2r21" path="res://Resources/Rarities/Epic.tres" id="5_ym51a"]
 [ext_resource type="Script" uid="uid://crox7156djc78" path="res://Scripts/Cards/card_pack_type.gd" id="6_fathu"]
-[ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/card_pack.tscn" id="7_iw3u6"]
+[ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/Items/card_pack.tscn" id="7_iw3u6"]
 
 [resource]
 script = ExtResource("6_fathu")
