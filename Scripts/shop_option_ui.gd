@@ -14,8 +14,8 @@ var price: float
 func setup_offer(item_type_: ItemType, price_: float):
 	item_type = item_type_
 	item_image.texture = item_type.texture
-	item_name.text = item_type.display_name()
-	background.self_modulate = item_type_.get_color()
+	item_name.text = item_type.name
+	# background.self_modulate = Utils.get_rarity_color(item_type_.rarity)
 	MoneyManager.money_changed.connect(update_ui)
 	set_price(price_)
 

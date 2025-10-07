@@ -10,15 +10,15 @@ var cards_to_ui: Dictionary[CardType, CatalogItemUI] = {}
 @onready var grid_container: GridContainer = $CenterContainer/GridContainer
 @onready var new_card_notification_holder: HBoxContainer = $"../../NewCardNotificationHolder"
 
-#func _ready() -> void:
-	#CatalogManager.got_new_card_type.connect(new_card_type)
-	#CatalogManager.lost_card_type.connect(lost_card_type)
-	#
-	#for card in CardLibrary.cards:
-		#var catalog_item: CatalogItemUI = CATALOG_ITEM.instantiate()
-		#grid_container.add_child(catalog_item)
-		#catalog_item.set_item(card)
-		#cards_to_ui[card] = catalog_item
+func _ready() -> void:
+	CatalogManager.got_new_card_type.connect(new_card_type)
+	CatalogManager.lost_card_type.connect(lost_card_type)
+	
+	for card in ItemLibrary.cards.unsorted_array:
+		var catalog_item: CatalogItemUI = CATALOG_ITEM.instantiate()
+		grid_container.add_child(catalog_item)
+		catalog_item.set_item(card)
+		cards_to_ui[card] = catalog_item
 
 func new_card_type(card: CardType):
 	cards_to_ui[card].set_complete()
@@ -29,7 +29,7 @@ func new_card_type(card: CardType):
 	
 	var finished = true
 	
-	for c in CardLibrary.cards:
+	for c in ItemLibrary.cards.unsorted_array:
 		if CatalogManager.has_card(c) == false:
 			finished = false
 			break
@@ -47,7 +47,7 @@ func lost_card_type(card: CardType):
 
 func update_progress_ui():
 	var completed_num = 0
-	for card in CardLibrary.cards:
+	for card in ItemLibrary.cards.unsorted_array:
 		if CatalogManager.has_card(card):
 			completed_num += 1
-	completion_text.text = "[pulse]%.0f%%" % [float(completed_num) / len(CardLibrary.cards) * 100.0]
+	completion_text.text = "[pulse]%.0f%%" % [float(completed_num) / len(ItemLibrary.cards.unsorted_array) * 100.0]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5qca7515lm7e"]
 
-[ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Resources/theme.tres" id="1_7t5cs"]
+[ext_resource type="Theme" uid="uid://3bvp6qws6y0d" path="res://Theming/theme.tres" id="1_7t5cs"]
 
 [node name="MarketPriceText" type="RichTextLabel"]
 custom_minimum_size = Vector2(0, 30)

@@ -8,4 +8,5 @@
 [resource]
 script = ExtResource("4_s4esm")
 audio_clips = Array[AudioStream]([ExtResource("1_bydk8"), ExtResource("2_cebcm"), ExtResource("3_18nvk")])
+name = "NewCard"
 metadata/_custom_type_script = "uid://du0hi6o2oug7w"

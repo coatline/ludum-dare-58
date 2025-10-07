@@ -8,7 +8,7 @@ var pool_3d: Array[AudioStreamPlayer3D] = []
 var pool_non_spatial: Array[AudioStreamPlayer] = []
 
 func _ready():
-	for i in INITIAL_POOL_SIZE:
+	for i in range(INITIAL_POOL_SIZE):
 		_add_to_pool_2d()
 		_add_to_pool_3d()
 		_add_to_pool_non_spatial()
@@ -45,10 +45,12 @@ func _get_player_from_pool(pool: Array, add_func: Callable):
 	return add_func.call()
 
 func _return_to_pool(player: AudioStreamPlayer, pool: Array):
+	player.stop()
 	player.stream = null
 
 func PlaySound(stream: AudioStream, position = null, volume: float = DEFAULT_VOLUME, spatial: bool = true):
 	if stream == null:
+		print("NULL STREAM!")
 		return
 
 	if spatial:

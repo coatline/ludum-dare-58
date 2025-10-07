@@ -10,7 +10,7 @@ const X_MARK = preload("uid://deryh5g220smb")
 
 func set_item(item: ItemType):
 	image.texture = item.texture
-	item_name.text = item.display_name()
+	item_name.text = item.name
 
 func set_complete():
 	image.self_modulate = Color.WHITE

@@ -2,7 +2,7 @@ extends Control
 class_name UIOverlayManager
 
 @onready var catalog_ui: CatalogUI = $CatalogUI
-@onready var market_ui: MarketUI = $MarketUI
+@onready var market_ui: EconomyUI = $EconomyUI
 @onready var shop_ui: ShopUI = $ShopUI
 
 var current_overlay: UIOverlay

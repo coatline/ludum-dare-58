@@ -2,53 +2,54 @@ extends Node
 
 var resources: Dictionary = {}
 
-@export var resource_folder: String = "res://Resources"
+@export var manifest_path: String = "res://resources.json"
 
 func _ready():
-	_load_all_resources(resource_folder)
-	# print("Loaded resources:", resources)
+	_load_resources_from_manifest()
+	print("LOADED SOUNDS:", len(get_resources(Sound)))
+#
+#func _on_request_completed(result, response_code, headers, body, sheet):
+	#var json_text = body.get_string_from_utf8()
+	#var file = FileAccess.open("res://%s.json" % [sheet], FileAccess.WRITE)
+	#file.store_string(json_text)
+	#file.close()
 
-func _load_all_resources(folder_path: String):
-	var dir := DirAccess.open(folder_path)
-	if dir == null:
-		push_error("Cannot open folder: %s" % folder_path)
-		return
 
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if dir.current_is_dir():
-			if file_name != "." and file_name != "..":
-				_load_all_resources(folder_path + "/" + file_name)
-		else:
-			if file_name.ends_with(".tres") or file_name.ends_with(".res"):
-				var res_path = folder_path + "/" + file_name
-				var res = ResourceLoader.load(res_path)
+func _load_resources_from_manifest():
+	if FileAccess.file_exists(manifest_path):
+		var file = FileAccess.open(manifest_path, FileAccess.READ)
+		var json_text = file.get_as_text()
+		file.close()
+
+		var result = JSON.parse_string(json_text)
+		if result == null:
+			push_error("Failed to parse JSON")
+			return
+
+		var data = result
+		
+		for cls_name in data.keys():
+			var paths = data[cls_name]
+			
+			for path in paths:
+				var res = ResourceLoader.load(path)
 				if res:
-					var res_type = res.get_script()
-					if res_type == null:
-						res_type = res.get_class()
+					var cls = res.get_script()
 					
-					# Use the class itself as the key if possible
-					if not resources.has(res_type):
-						resources[res_type] = []
-					resources[res_type].append(res)
-		file_name = dir.get_next()
-	dir.list_dir_end()
-
-func get_random_resource(cls: Variant) -> Resource:
-	if not resources.has(cls):
-		push_warning("No resources found for type: %s" % str(cls))
-		return null
-	
-	var arr: Array = resources[cls]
-	if arr.is_empty():
-		push_warning("Resource list is empty for type: %s" % str(cls))
-		return null
-
-	return arr[randi() % arr.size()]
+					if not resources.has(cls):
+						resources[cls] = []
+					resources[cls].append(res)
+				else:
+					print("Couldn't load %s" % path)
+	else:
+		push_error("Manifest not found: %s" % manifest_path)
 
 func get_resources(cls: Variant) -> Array:
-	if not resources.has(cls):
-		return []
-	return resources[cls]
+	return resources.get(cls, [])
+
+func get_random_resource(cls: Variant) -> Resource:
+	var arr = get_resources(cls)
+	if arr.empty():
+		push_warning("No resources found for type: %s" % str(cls))
+		return null
+	return arr[randi() % arr.size()]

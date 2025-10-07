@@ -8,4 +8,5 @@
 [resource]
 script = ExtResource("2_52uek")
 audio_clips = Array[AudioStream]([ExtResource("1_ssc6s"), ExtResource("2_xef85"), ExtResource("3_2sbma")])
+name = "OpenPack"
 metadata/_custom_type_script = "uid://du0hi6o2oug7w"

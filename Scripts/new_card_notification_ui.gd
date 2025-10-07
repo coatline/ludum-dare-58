@@ -9,7 +9,7 @@ var slide_time = 0.35
 var pause_time = 5
 
 func set_card(card: CardType):
-	card_name.text = card.display_name()
+	card_name.text = card.name
 	card_image.texture = card.texture
 
 func _process(delta: float) -> void:

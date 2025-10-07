@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://b06whrk25glkc" path="res://Addons/card_data_scraper.gd" id="1_nb51f"]
 [ext_resource type="Material" uid="uid://fhqebad1dayb" path="res://Materials/floor_material.tres" id="2_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b3xnamncjiyk" path="res://Scenes/table.tscn" id="2_i6g32"]
+[ext_resource type="Script" uid="uid://dcxelaktv8atj" path="res://Scripts/generate_resource_json.gd" id="2_nb51f"]
 [ext_resource type="PackedScene" uid="uid://b10ev2826qnx3" path="res://Scenes/Items/storage_box.tscn" id="3_1phco"]
 [ext_resource type="PackedScene" uid="uid://cyp3l712c30je" path="res://Scenes/Items/card_pack.tscn" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://cab7ac4gtl8fm" path="res://Scripts/shop_keeper.gd" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://cd8q6trpw52qa" path="res://Scripts/Tools/editor_visibility.gd" id="6_i6g32"]
-[ext_resource type="Resource" uid="uid://chnbyayjiw6i1" path="res://Resources/Packs/Common Pack.tres" id="6_ldgsr"]
 [ext_resource type="Material" uid="uid://bvqgky7y6nesi" path="res://Materials/door_material.tres" id="7_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://d2tx2nr25s1am" path="res://Scenes/light_bulb.tscn" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://i5ewtmb3bog0" path="res://Scripts/delivery_spot.gd" id="11_o5yvi"]
@@ -84,10 +84,12 @@ size = Vector3(0.15, 2, 0.15)
 
 [node name="DataUpdater" type="Node" parent="."]
 script = ExtResource("1_nb51f")
-url = "https://opensheet.elk.sh/1-W3Yr6ZREH2BvoMlhvMasoBqIs3edB3z7X2fTYE16rs/Sheet1"
+
+[node name="ResourceUpdater" type="Node" parent="."]
+script = ExtResource("2_nb51f")
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
-transform = Transform3D(-0.5969112, 0, -0.8023073, 0, 1, 0, 0.8023073, 0, -0.5969112, 0, 0, 0)
+transform = Transform3D(-0.028776467, 0, -0.99958587, 0, 1, 0, 0.99958587, 0, -0.028776467, 0, 0, 0)
 
 [node name="Table" parent="." instance=ExtResource("2_i6g32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -0.5)
@@ -101,23 +103,11 @@ sky_mode = 1
 environment = SubResource("Environment_ebmjs")
 
 [node name="StorageBox" parent="." instance=ExtResource("3_1phco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8667564, 0.2570449, -0.5337434)
-
-[node name="CardPack4" parent="." instance=ExtResource("3_3dryh")]
-transform = Transform3D(0.087155804, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, 0.087155804, 4.8009834, 1.160697, -0.6552458)
-starting_pack_type = ExtResource("6_ldgsr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.087725, 0.2570449, -0.5337434)
+visible = false
 
 [node name="CardPack3" parent="." instance=ExtResource("3_3dryh")]
 transform = Transform3D(0.087155804, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, 0.087155804, 4.3564706, 1.0431367, -0.5792642)
-starting_pack_type = ExtResource("6_ldgsr")
-
-[node name="CardPack2" parent="." instance=ExtResource("3_3dryh")]
-transform = Transform3D(0.087155804, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, 0.087155804, 4.735648, 1.0979548, 0.003636986)
-starting_pack_type = ExtResource("6_ldgsr")
-
-[node name="CardPack" parent="." instance=ExtResource("3_3dryh")]
-transform = Transform3D(0.087155804, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, 0.087155804, 3.8192892, 1.0000056, -0.12820145)
-starting_pack_type = ExtResource("6_ldgsr")
 
 [node name="ShopKeeper" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3114581, 1.0966785, -5.233843)

@@ -9,34 +9,35 @@ class_name Retail
 var item_to_ui: Dictionary[ItemType, ShopOffer] = {}
 var price_update_timer: float = 0.0
 
+var available_items := []
+
 func _ready():
-	#for item in available_items:
-		#create_offer(item)
+
+	available_items = ItemLibrary.card_packs.unsorted_array.duplicate()
+
+	for item in available_items:
+		create_offer(item)
 	
 	price_update_timer = randf_range(min_price_duration, max_price_duration)
 
-func create_offer(item_type: ItemType):
+func create_offer(item_type: CardPackType):
 	var new_offer: ShopOffer = retail_offer_scene.instantiate()
-	var price: float = Economy.get_market_price(item_type.rarity) * randf_range(0.5, 1.2)
-	var pack: CardPackType = item_type as CardPackType
-	
-	if pack:
-		price += pack.price
+	var price: float = item_type.price
 	
 	offers_container.add_child(new_offer)
 	new_offer.setup_offer(item_type, price)
 	item_to_ui[item_type] = new_offer
 
-#func _process(delta: float) -> void:
-	#price_update_timer -= delta * TimeManager.time_scale
-	#if price_update_timer <= 0:
-		#price_update_timer = randf_range(min_price_duration, max_price_duration)
-#
-		#for item in available_items:
-			#create_offer(item)
-#
-			#var price: float = Economy.get_market_price(item.rarity) * randf_range(1, 1.5)
-			#var pack: CardPackType = item as CardPackType
-			#if pack:
-				#price += pack.price
-			#item_to_ui[item].set_price(price)
+# func _process(delta: float) -> void:
+# 	price_update_timer -= delta * TimeManager.time_scale
+# 	if price_update_timer <= 0:
+# 		price_update_timer = randf_range(min_price_duration, max_price_duration)
+
+# 		for item in available_items:
+# 			create_offer(item)
+
+# 			var price: float = Economy.card_to_market[item].current_price * randf_range(1, 1.5)
+# 			var pack: CardPackType = item as CardPackType
+# 			if pack:
+# 				price += pack.price
+# 			item_to_ui[item].set_price(price)

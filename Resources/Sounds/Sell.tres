@@ -7,4 +7,5 @@
 [resource]
 script = ExtResource("1_mg6vm")
 audio_clips = Array[AudioStream]([ExtResource("1_1dad6"), ExtResource("2_p023c")])
+name = "Sell"
 metadata/_custom_type_script = "uid://du0hi6o2oug7w"

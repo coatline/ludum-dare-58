@@ -3,8 +3,8 @@ extends Node
 func get_item_string(holdable_object: HoldableObject) -> String:
 	return "[color=%s]%s[/color]" % [holdable_object.text_color().to_html(), holdable_object.display_name]
 
-func color_string_with_rarity(message: String, rarity: Rarity):
-	return "[color=%s]%s[/color]" % [rarity.color.to_html(), message]
+func color_string(message: String, color: Color):
+	return "[color=%s]%s[/color]" % [color.to_html(), message]
 
 func get_verb_item_string(message: String, holdable_object: HoldableObject) -> String:
 	return "%s[color=%s]%s[/color]" % [message, holdable_object.text_color().to_html(), holdable_object.display_name]
@@ -22,7 +22,22 @@ func get_new_material() -> StandardMaterial3D:
 	return mat
 
 func play_sound_at(sound_name: String, position = null, volume: float = SoundManager.DEFAULT_VOLUME, spatial: bool = true):
-	var sounds = ResourceManager.resources[Sound]
+	var sounds = ResourceManager.get_resources(Sound)
 	for sound: Sound in sounds:
-		if sound.resource_path.get_file().get_basename() == sound_name:
+		if sound.name == sound_name:
 			SoundManager.PlaySound(sound.get_random_sound(), position, volume, spatial)
+
+func get_rarity_color(rarity: String) -> Color:
+	match rarity:
+		"Common":
+			return Color(0.8, 0.8, 0.8) # White
+		"Uncommon":
+			return Color(0, 1, 0) # Green
+		"Rare":
+			return Color(0, 1, 1) # Blue
+		"Epic":
+			return Color(0.6, 0, 0.8) # Purple
+		"Legendary":
+			return Color(1, 0.5, 0) # Orange
+		_:
+			return Color(0, 0, 0) # Default to black

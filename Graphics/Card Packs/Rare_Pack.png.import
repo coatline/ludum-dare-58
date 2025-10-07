@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkqh2yrqcn31s"
-path="res://.godot/imported/Common_Pack.png-298a480c1158e50ca1a1ef813129a872.ctex"
+uid="uid://bs2x08npo5cog"
+path="res://.godot/imported/Rare_Pack.png-fb6904d80909d934a49b9abc4de0096c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Packs/Common_Pack.png"
-dest_files=["res://.godot/imported/Common_Pack.png-298a480c1158e50ca1a1ef813129a872.ctex"]
+source_file="res://Graphics/Card Packs/Rare_Pack.png"
+dest_files=["res://.godot/imported/Rare_Pack.png-fb6904d80909d934a49b9abc4de0096c.ctex"]
 
 [params]
 

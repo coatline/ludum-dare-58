@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="LD58"
-run/main_scene="uid://db4sxar4lhac1"
+run/main_scene="uid://fbo5jgt66rax"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-CardLibrary="*res://Scripts/card_library.gd"
+ItemLibrary="*res://Scripts/item_library.gd"
+ResourceManager="*res://Scripts/Singletons/resource_manager.gd"
 SoundManager="*res://Scripts/Singletons/sound_manager.gd"
 MoneyManager="*res://Scripts/Singletons/money_manager.gd"
-ResourceManager="*res://Scripts/Singletons/resource_manager.gd"
 KeybindHelper="*res://Scripts/Singletons/keybind_helper.gd"
 Utils="*res://Scripts/Singletons/utils.gd"
 Economy="*res://Scripts/Singletons/economy.gd"

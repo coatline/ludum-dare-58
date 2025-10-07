@@ -1,6 +1,6 @@
 extends Button
 
-@export var marketUI: MarketUI
+@export var marketUI: EconomyUI
 @export var display_time: float = 60
 @export var line_width: float = 5
 
