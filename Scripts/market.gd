@@ -39,7 +39,7 @@ func update_price(delta: float):
 	trend = clamp(trend, -0.5, 0.5)
 
 	# update price
-	current_price += current_price * trend * volatility * delta * 0.1
+	current_price += current_price * trend * volatility * delta * 0.06
 
 	# keep within min/max bounds
 	current_price = current_price

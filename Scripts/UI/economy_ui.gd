@@ -7,7 +7,7 @@ const MARKET_PRICE_TEXT = preload("uid://c5qca7515lm7e")
 @export var market_line_prefab: PackedScene
 @export var horizontal_units_count: int = 10
 @export var vertical_units_count: int = 10
-@export var display_time: float = 60.0
+@export var display_time: float = 360.0
 @export var max_price: float = 100.0
 
 @onready var graph_panel: Panel = $GraphPanel
@@ -47,7 +47,7 @@ func _ready() -> void:
 		price_texts[card] = text_instance
 	
 	Economy.economy_updated.connect(update_graph)
-	set_display_time(display_time, "1h")
+	set_display_time(display_time, "6h")
 	disable()
 
 func update_graph() -> void:
