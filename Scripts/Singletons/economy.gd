@@ -11,7 +11,7 @@ var last_simulated_time: int = 0
 
 func _ready() -> void:
 	for card: CardType in ItemLibrary.cards.unsorted_array:
-		card_to_market[card] = Market.new(card.price, card.demand_drift, card.demand_recovery)
+		card_to_market[card] = Market.new(card.price, card.demand_scale, card.demand_randomness, card.demand_recovery_strength, card.demand_trend_inertia)
 
 func _process(delta: float) -> void:
 	var updated: bool = false

@@ -268,24 +268,29 @@ layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
 offset_left = 37.0
-offset_top = 70.0
+offset_top = 47.0
 offset_right = 479.0
-offset_bottom = -31.5
+offset_bottom = -54.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScaleButtons" type="HBoxContainer" parent="Control/UIMenuManager/EconomyUI/GraphPanel"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_top = -40.0
-offset_bottom = -1.0
+anchor_bottom = 1.0
+offset_top = 18.5
+offset_bottom = 49.5
 grow_horizontal = 2
+grow_vertical = 0
 alignment = 1
 
 [node name="ScaleButton" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "1h"
 script = ExtResource("10_gymyn")
@@ -293,8 +298,10 @@ marketUI = NodePath("../../..")
 line_width = 6.0
 
 [node name="ScaleButton5" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "6h"
 script = ExtResource("10_gymyn")
@@ -302,8 +309,10 @@ marketUI = NodePath("../../..")
 display_time = 360.0
 
 [node name="ScaleButton2" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "1d"
 script = ExtResource("10_gymyn")
@@ -312,8 +321,10 @@ display_time = 1440.0
 line_width = 4.0
 
 [node name="ScaleButton3" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "7d"
 script = ExtResource("10_gymyn")
@@ -322,8 +333,10 @@ display_time = 10080.0
 line_width = 3.5
 
 [node name="ScaleButton4" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "1m"
 script = ExtResource("10_gymyn")
@@ -332,8 +345,10 @@ display_time = 43200.0
 line_width = 2.5
 
 [node name="ScaleButton6" type="Button" parent="Control/UIMenuManager/EconomyUI/GraphPanel/ScaleButtons" node_paths=PackedStringArray("marketUI")]
+custom_minimum_size = Vector2(30, 25)
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "1y"
 script = ExtResource("10_gymyn")
@@ -359,14 +374,13 @@ horizontal_alignment = 2
 
 [node name="MarketTexts" type="VBoxContainer" parent="Control/UIMenuManager/EconomyUI"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 86.0
-offset_top = 74.0
-offset_right = 373.0
-offset_bottom = 321.0
-grow_horizontal = 2
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -301.0
+grow_horizontal = 0
+grow_vertical = 2
 alignment = 1
 
 [node name="ShopUI" type="Panel" parent="Control/UIMenuManager" node_paths=PackedStringArray("marketplace", "retail")]

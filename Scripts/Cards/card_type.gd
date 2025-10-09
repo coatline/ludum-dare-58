@@ -3,28 +3,28 @@ class_name CardType
 
 enum CardGrade { COMMON, RARE, EPIC, LEGENDARY }
 
+var demand_scale: float
+var demand_randomness: float
+var demand_recovery_strength: float
 var demand_trend_inertia: float
-var demand_recovery: float
-var starting_demand: float
-var demand_drift: float
 var rarity: String
 
 func _init(data: Dictionary):
 	super._init(data)
-	starting_demand = float(data.get("Starting Demand", 0))
-	demand_drift = float(data.get("Demand Drift", 0))
-	demand_recovery = float(data.get("Demand Recovery Strength", 0))
+	demand_scale = float(data.get("Demand Scale", 0))
+	demand_randomness = float(data.get("Demand Randomness", 0))
+	demand_recovery_strength = float(data.get("Demand Recovery Strength", 0))
 	demand_trend_inertia = float(data.get("Demand Trend Inertia", 0))
 	rarity = String(data.get("Rarity", "Unknown"))
-	# debug_print()
+	debug_print()
 
 func debug_print():
 	print("----- Card Info -----")
 	print("Name: ", name)
 	print("Texture: ", texture)
-	print("Starting Demand: ", starting_demand)
-	print("Demand Drift: ", demand_drift)
-	print("Demand Recovery: ", demand_recovery)
+	print("Demand Scale: ", demand_scale)
+	print("Demand Randomness: ", demand_randomness)
+	print("Demand Recovery Strength: ", demand_recovery_strength)
 	print("Demand Trend Inertia: ", demand_trend_inertia)
 	print("Price: ", price)
 	print("Description: ", description)

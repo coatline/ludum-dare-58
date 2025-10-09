@@ -10,6 +10,8 @@ var material: StandardMaterial3D
 func _ready():
 	material = mesh_instance_3d.get_active_material(0) as StandardMaterial3D
 	if material:
+		material = material.duplicate()
+		mesh_instance_3d.set_surface_override_material(0, material)
 		original_color = material.albedo_color
 	
 	omni_light_3d.visible = not omni_light_3d.visible

@@ -38,8 +38,8 @@ func new_card_type(card: CardType):
 
 	if finished:
 		print("You won!")
-	else:
-		update_progress_ui()
+	
+	update_progress_ui()
 
 func lost_card_type(card: CardType):
 	cards_to_ui[card].set_incomplete()

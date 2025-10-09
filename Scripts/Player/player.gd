@@ -28,8 +28,10 @@ func _physics_process(delta):
 	for i in range(10):
 		if Input.is_key_pressed(KEY_0 + i):
 			TimeManager.time_scale = i
-			if i > 2:
+			if i >= 2:
 				TimeManager.time_scale *= i * 5
+			else:
+				TimeManager.time_scale = 7
 	
 	if Input.is_action_just_pressed("debug_reload"):
 		get_tree().reload_current_scene() 

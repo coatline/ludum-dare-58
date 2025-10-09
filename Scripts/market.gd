@@ -1,8 +1,11 @@
 class_name Market
 
 var base_price: float
-var volatility: float
+var randomness: float
 var current_price: float
+var demand_scale: float
+var demand_recovery_strength: float
+var demand_trend_inertia: float
 var trend: float = 0.0
 
 var histories = [
@@ -16,33 +19,36 @@ var histories = [
 	MarketHistory.new(self, 365, 525600)
 ]
 
-func _init(_base_price: float = 50.0, _volatility: float = 1, _recovery_speed: float = 0.000001):
+func _init(_base_price: float, _demand_scale: float, _randomness: float, _demand_recovery_strength: float, _demand_trend_inertia: float):
 	base_price = _base_price
-	volatility = _volatility
+	randomness = _randomness
+	demand_scale = _demand_scale
+	demand_recovery_strength = _demand_recovery_strength
+	demand_trend_inertia = _demand_trend_inertia
 	current_price = base_price
 
 func update_price(delta: float):
-	var randomness = 0.05
-	var trend_inertia = 0.99  # how much trend “sticks”
-	var correction_strength = 0.01  # pull toward base price
-
-	# random drift like daily ups/downs
-	var random_drift = randf_range(-randomness, randomness)
-
-	# recovery: cheap stocks tend to rise, expensive tend to drop
-	var correction = ((base_price - current_price) / base_price) * correction_strength
-
-	# gradual trend change (momentum + random noise)
-	trend = (trend * trend_inertia) + random_drift + correction
-
-	# apply volatility and clamp trend a bit
-	trend = clamp(trend, -0.5, 0.5)
-
-	# update price
-	current_price += current_price * trend * volatility * delta * 0.06
-
-	# keep within min/max bounds
-	current_price = current_price
+	# Add stronger short-term randomness
+	var noise = randf_range(-1, 1) * randomness * 0.5
+	
+	# Small chance of larger event (rare spikes or dips)
+	if randf() < 0.05:
+		noise += randf_range(-1, 1) * randomness * 2.5
+	
+	# Correction toward base_price (mean reversion)
+	var correction = ((base_price - current_price) / base_price) * demand_recovery_strength * 0.01
+	
+	# Momentum/trend with slight decay
+	trend = trend * demand_trend_inertia + correction + noise
+	
+	# Clamp to avoid runaway prices
+	trend = clamp(trend, -0.6, 0.6)
+	
+	# Apply to price with volatility
+	current_price += current_price * trend * demand_scale * delta * 0.03
+	
+	# Prevent negative or absurd values
+	current_price = max(current_price, 0.01)
 
 func get_market_history(target_past_minutes: float) -> MarketHistory:
 	var history_scale = 0
